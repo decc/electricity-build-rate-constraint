@@ -178,11 +178,6 @@ timeSeriesChart = ->
     first_data_year = _
     chart
 
-  chart.min_value = (_) ->
-    return min_value unless _?
-    min_value = _
-    chart
-
   chart.max_value = (_) ->
     return max_value unless _?
     max_value = _
