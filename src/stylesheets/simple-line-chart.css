@@ -1,0 +1,33 @@
+body {
+  font: 10px sans-serif;
+}
+
+h1 {
+	margin-bottom: 0;
+}
+
+#charts div {
+  display: inline-block;
+}
+
+#charts div h2 {
+  text-align: center;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.line {
+  fill: none;
+  stroke: black;
+  stroke-width: 3px;
+}
+
+.area {
+  fill: steelblue;
+  fill-opacity: 0.1;
+}
+

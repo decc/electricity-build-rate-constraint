@@ -2,3 +2,11 @@ electricity-build-rate-constraint/
 *.swp
 *.o
 *.dylib
+*.dylib.powenv
+~$electricity-build-rate-constraint.xlsx
+model.c
+model.rb
+model.o
+tmp/always_restart.txt
+
+tmp/restart.txt
