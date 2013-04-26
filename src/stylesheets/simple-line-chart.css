@@ -20,6 +20,10 @@ h1 {
   shape-rendering: crispEdges;
 }
 
+.axislabel {
+  text-anchor: end;
+}
+
 .line {
   fill: none;
   stroke: black;

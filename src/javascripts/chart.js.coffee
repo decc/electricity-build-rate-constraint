@@ -41,44 +41,48 @@ getSettingsFromUrl = () ->
     if c[i]? and c[i] != ""
       s[a] = c[i]
 
-  
-
 timeSeriesChart = ->
   
   margin =
     top: 20
     right: 20
     bottom: 20
-    left: 40
+    left: 50
 
-  width = 240
-  height = 120
+  width = 250
+  height = 125
 
-  X = (d) -> xScale(d[0])
-  Y = (d) -> yScale(d[1])
-  xValue = (d) -> d[0]
-  yValue = (d) -> d[1]
+  unit = "TWh/yr"
+  first_scale_year = 2010
+  last_scale_year = 2050
+  first_data_year = 2012
+  max_value = undefined
+
   xScale = d3.time.scale()
   yScale = d3.scale.linear()
-  xAxis = d3.svg.axis().scale(xScale).orient("bottom")
-  yAxis = d3.svg.axis().scale(yScale).orient("left")
-  area = d3.svg.area().x(X).y1(Y)
-  line = d3.svg.line().x(X).y(Y)
+
+  xAxis = d3.svg.axis().scale(xScale).orient("bottom").ticks(5)
+  yAxis = d3.svg.axis().scale(yScale).orient("left").ticks(5)
+
+  area = d3.svg.area()
+    .x((d,i) -> xScale(new Date("#{first_data_year+i}")))
+    .y((d,i) -> yScale(+d))
+
+  line = d3.svg.line()
+    .x((d,i) -> xScale(new Date("#{first_data_year+i}")))
+    .y((d,i) -> yScale(+d))
 
   chart = (selection) ->
     selection.each (data) ->
       
-      # Convert data to standard representation greedily;
-      # this is needed for nondeterministic accessors.
-      data = data.map((d, i) ->
-        [xValue.call(data, d, i), yValue.call(data, d, i)]
-      )
       # Update the x-scale.
-      xScale.domain(d3.extent(data, (d) -> d[0]))
+      xScale
+        .domain([new Date("#{first_scale_year}"), new Date("#{last_scale_year}")])
         .range([0, width - margin.left - margin.right])
       
       # Update the y-scale.
-      yScale.domain([0, d3.max(data, (d) -> d[1])])
+      yScale
+        .domain([0, max_value || d3.max(data)])
         .range([height - margin.top - margin.bottom, 0])
       
       # Select the svg element, if it exists.
@@ -88,6 +92,7 @@ timeSeriesChart = ->
       gEnter = svg.enter()
         .append("svg")
         .append("g")
+        .attr('class','drawing')
 
       # And the basic bits
       gEnter
@@ -102,6 +107,9 @@ timeSeriesChart = ->
       gEnter
         .append("g")
         .attr("class", "y axis")
+      gEnter
+        .append("text")
+        .attr("class", "y axislabel")
       
       # Update the outer dimensions.
       svg
@@ -112,10 +120,14 @@ timeSeriesChart = ->
       g = svg.select("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")")
       
       # Update the area path.
-      g.select(".area").attr("d", area.y0(yScale.range()[0]))
+      g.select(".area")
+        .transition()
+          .attr("d", area.y0(yScale.range()[0]))
       
       # Update the line path.
-      g.select(".line").attr("d", line)
+      g.select(".line")
+        .transition()
+          .attr("d", line)
       
       # Update the x-axis.
       g.select(".x.axis")
@@ -127,50 +139,72 @@ timeSeriesChart = ->
         .attr("transform", "translate(0," + xScale.range()[0] + ")")
         .call(yAxis)
 
+      g.select(".y.axislabel")
+        .attr("transform", "translate(0," + (xScale.range()[0] - 10) + ")")
+        .text(unit)
+
   chart.margin = (_) ->
-    return margin  unless _?
+    return margin unless _?
     margin = _
     chart
 
   chart.width = (_) ->
-    return width  unless _?
+    return width unless _?
     width = _
     chart
 
   chart.height = (_) ->
-    return height  unless _?
+    return height unless _?
     height = _
     chart
 
-  chart.x = (_) ->
-    return xValue  unless _?
-    xValue = _
+  chart.unit = (_) ->
+    return unit unless _?
+    unit = _
     chart
 
-  chart.y = (_) ->
-    return yValue  unless _?
-    yValue = _
+  chart.first_scale_year = (_) ->
+    return first_scale_year unless _?
+    first_scale_year = _
+    chart
+
+  chart.last_scale_year = (_) ->
+    return last_scale_year unless _?
+    last_scale_year = _
+    chart
+
+  chart.first_data_year = (_) ->
+    return first_data_year unless _?
+    first_data_year = _
+    chart
+
+  chart.min_value = (_) ->
+    return min_value unless _?
+    min_value = _
+    chart
+
+  chart.max_value = (_) ->
+    return max_value unless _?
+    max_value = _
     chart
 
   chart
 
 
-chart = timeSeriesChart()
-  .x((d,i) -> new Date("#{2012+i}"))
-  .y((d) -> +d)
-
 visualise = () ->
   d3.select('#zero_carbon_build_rate')
     .datum(data.series.zero_carbon_build_rate)
-    .call(chart)
+    .call(timeSeriesChart().unit("TWh/yr/yr").max_value(100))
 
   d3.select('#emissions')
     .datum(data.series.emissions)
-    .call(chart)
+    .call(timeSeriesChart().unit("MtCO2/yr").max_value(200))
 
   d3.select('#emissions_factor')
     .datum(data.series.emissions_factor)
-    .call(chart)
+    .call(timeSeriesChart().unit("gCO2/kWh").max_value(500))
+
+  d3.select('#emissions_factor .chart svg')
 
 d3.select('#maximum_low_carbon_build_rate')
   .on('change', () ->
