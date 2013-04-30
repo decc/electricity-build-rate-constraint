@@ -143,39 +143,9 @@ timeSeriesChart = ->
         .attr("transform", "translate(0," + (xScale.range()[0] - 10) + ")")
         .text(unit)
 
-  chart.margin = (_) ->
-    return margin unless _?
-    margin = _
-    chart
-
-  chart.width = (_) ->
-    return width unless _?
-    width = _
-    chart
-
-  chart.height = (_) ->
-    return height unless _?
-    height = _
-    chart
-
   chart.unit = (_) ->
     return unit unless _?
     unit = _
-    chart
-
-  chart.first_scale_year = (_) ->
-    return first_scale_year unless _?
-    first_scale_year = _
-    chart
-
-  chart.last_scale_year = (_) ->
-    return last_scale_year unless _?
-    last_scale_year = _
-    chart
-
-  chart.first_data_year = (_) ->
-    return first_data_year unless _?
-    first_data_year = _
     chart
 
   chart.max_value = (_) ->
