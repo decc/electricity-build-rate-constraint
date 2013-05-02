@@ -2,6 +2,37 @@ require 'sinatra'
 require 'json'
 require './model'
 
+# We don't care about standard FFI methods
+module FFIMethodsToIgnore; extend FFI::Library; end
+
+def extract_model_structure
+  # Get all the excel references
+  relevant_methods = (Model.methods - FFIMethodsToIgnore.methods - [:reset])
+  # Then remove the ones that look like standard sheet references
+  relevant_methods = relevant_methods.find_all do |m|
+    m.to_s !~ /^(set_)?model_/
+  end
+  structure = { inputs: [], outputs: [], series: [] } 
+  relevant_methods.each do |method|
+    # If it is a setter, it must be an input
+    if method =~ /^set_(.*?)$/
+     structure[:inputs] << $1
+    # If it is the getter for a setter, we ignore
+    elsif structure[:inputs].include?(method.to_s)
+     next
+    # If it is an array, then we add it as a series
+    elsif ModelShim.new.send(method).is_a?(Array)
+     structure[:series] << method.to_s 
+    # Otherwise it must be an output
+    else
+      structure[:outputs] << method.to_s
+    end
+  end
+  structure
+end
+
+model_structure = extract_model_structure()
+
 get '/data/1/:maximum_low_carbon_build_rate' do 
   m = ModelShim.new
   build_constraint = params[:maximum_low_carbon_build_rate].to_f
@@ -14,21 +45,22 @@ get '/data/1/:maximum_low_carbon_build_rate' do
     year = year - 1
   end
 
-  {
-    maximum_low_carbon_build_rate: m.maximum_low_carbon_build_rate,
-    year_second_wave_of_building_starts: m.year_second_wave_of_building_starts,
-    series: {
-      emissions_factor: m.emissions_factor.flatten,
-      emissions: m.emissions.flatten,
-      zero_carbon_build_rate: m.zero_carbon_built.flatten,
-      zero_carbon_output: m.zero_carbon.flatten,
-      high_carbon_output: m.high_carbon.flatten,
-    }
-  }.to_json
+  p model_structure
+
+  result = {}
+  model_structure.each do |key, value|
+    result[key] = h = {}
+    value.each do |method|
+      r = m.send(method)
+      r.flatten! if r.is_a?(Array) && r.length == 1
+      h[method] = r
+    end
+  end
+
+  result.to_json
 end
 
 # The root url. Just returns index.html at the moment
 get '*' do
   send_file 'public/index.html'
 end
-

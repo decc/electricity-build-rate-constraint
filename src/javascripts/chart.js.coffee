@@ -196,9 +196,7 @@ timeSeriesStakedAreaChart = ->
         )
       )
 
-      console.log data
       layers = stack(data)
-      console.log layers
       
       # Update the x-scale.
       xScale
@@ -261,7 +259,7 @@ timeSeriesStakedAreaChart = ->
         .attr("class", (d,i) -> "area area#{i}")
 
       areas.transition()
-        .attr("d", (d) -> console.log(d); area(d))
+        .attr("d", (d) -> area(d))
 
   chart.unit = (_) ->
     return unit unless _?
@@ -277,7 +275,7 @@ timeSeriesStakedAreaChart = ->
 
 visualise = () ->
   d3.select('#zero_carbon_build_rate')
-    .datum(data.series.zero_carbon_build_rate)
+    .datum(data.series.zero_carbon_built)
     .call(timeSeriesChart().unit("TWh/yr/yr").max_value(100))
 
   d3.select('#emissions')
@@ -289,7 +287,7 @@ visualise = () ->
     .call(timeSeriesChart().unit("gCO2/kWh").max_value(500))
 
   d3.select('#energy_output')
-    .datum([ data.series.zero_carbon_output, data.series.high_carbon_output ])
+    .datum([ data.series.zero_carbon, data.series.high_carbon ])
     .call(timeSeriesStakedAreaChart().unit("TWh/yr").max_value(700))
 
 
