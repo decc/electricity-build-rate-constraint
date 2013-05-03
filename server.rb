@@ -17,9 +17,6 @@ def extract_model_structure
     # If it is a setter, it must be an input
     if method =~ /^set_(.*?)$/
      structure[:inputs] << $1
-    # If it is the getter for a setter, we ignore
-    elsif structure[:inputs].include?(method.to_s)
-     next
     # If it is an array, then we add it as a series
     elsif ModelShim.new.send(method).is_a?(Array)
      structure[:series] << method.to_s 
@@ -28,6 +25,8 @@ def extract_model_structure
       structure[:outputs] << method.to_s
     end
   end
+  # Remove inputs from outputs
+  structure[:outputs] = structure[:outputs] - structure[:inputs]
   structure
 end
 
@@ -44,8 +43,6 @@ get '/data/1/:maximum_low_carbon_build_rate' do
     break if m.emissions_factor_2050 < 5
     year = year - 1
   end
-
-  p model_structure
 
   result = {}
   model_structure.each do |key, value|
