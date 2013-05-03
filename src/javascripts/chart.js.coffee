@@ -3,11 +3,13 @@ request = undefined
 s =
   version: 1
   maximum_low_carbon_build_rate: 0
+  electrification_start_year: 2020
   electricity_demand_in_2050: 600
 
 url_structure = [
-  "version"
-  "maximum_low_carbon_build_rate"
+  "version",
+  "maximum_low_carbon_build_rate",
+  "electrification_start_year",
   "electricity_demand_in_2050"
 ]
 

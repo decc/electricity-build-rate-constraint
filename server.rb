@@ -44,6 +44,7 @@ model_structure = extract_model_structure()
 url_structure = [
   "version",
   "maximum_low_carbon_build_rate",
+  "electrification_start_year",
   "electricity_demand_in_2050"
 ] - ["version"] # A cludge to make the above lines easier to copy and paste
 
