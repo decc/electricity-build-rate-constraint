@@ -2,11 +2,13 @@ data = {}
 request = undefined
 s =
   version: 1
-  build_rate: 0
+  maximum_low_carbon_build_rate: 0
+  electricity_demand_in_2050: 600
 
 url_structure = [
   "version"
-  "build_rate"
+  "maximum_low_carbon_build_rate"
+  "electricity_demand_in_2050"
 ]
 
 update = () ->
@@ -290,6 +292,10 @@ visualise = () ->
     .datum([ data.series.zero_carbon, data.series.high_carbon ])
     .call(timeSeriesStakedAreaChart().unit("TWh/yr").max_value(700))
 
+  d3.selectAll('.input')
+    .datum(() -> @dataset)
+    .text((d) -> d3.format(d.format)(data.inputs[d.modelParameterName]))
+
   d3.selectAll('.output')
     .datum(() -> @dataset)
     .text((d) -> d3.format(d.format)(data.outputs[d.modelParameterName]))
@@ -303,16 +309,17 @@ visualise = () ->
       .transition(1000)
       .style("opacity",0)
 
-d3.select('#maximum_low_carbon_build_rate')
-  .on('change', () ->
-    d3.select('#maximum_low_carbon_build_rate_value').text(+this.value)
-    s.build_rate = +this.value
+d3.selectAll('.control')
+  .datum(() -> @dataset)
+  .on('change', (d) ->
+    s[d.modelParameterName] = +this.value
     update()
   )
 
 updateControlsFromSettings = () ->
-  d3.select('#maximum_low_carbon_build_rate').property('value',s.build_rate)
-  d3.select('#maximum_low_carbon_build_rate_value').text(s.build_rate)
+  d3.selectAll('.control')
+    .datum(() -> @dataset)
+    .property('value', (d) -> s[d.modelParameterName])
 
 getSettingsFromUrl()
 updateControlsFromSettings()

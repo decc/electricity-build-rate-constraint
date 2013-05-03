@@ -32,13 +32,15 @@ end
 
 model_structure = extract_model_structure()
 
-get '/data/1/:maximum_low_carbon_build_rate' do 
+get '/data/1/:maximum_low_carbon_build_rate/:electricity_demand_in_2050' do 
   m = ModelShim.new
   build_constraint = params[:maximum_low_carbon_build_rate].to_f
+  electricity_demand_in_2050 = params[:electricity_demand_in_2050].to_f
   year = 2050
   while year >= 2010
     m.reset
     m.maximum_low_carbon_build_rate = build_constraint
+    m.electricity_demand_in_2050 = electricity_demand_in_2050
     m.year_second_wave_of_building_starts = year
     break if m.emissions_factor_2050 < 5
     year = year - 1

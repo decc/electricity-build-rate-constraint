@@ -5,9 +5,20 @@
     <p>Tries to show a scenario for the electricity sector that has 2050 emissions below 5&thinsp;gCO<sub>2</sub>/kW given the following assumptions</p>
     <p id='emissions_warning'>Warning: cannot get 2050 emissions below 5&thinsp;gCO<sub>2</sub>/kW given these assumptions. Try increasing the maximum low carbon build rate after 2020.</p>
     <form>
-      Maximum low carbon build rate after 2020:
-      <input id="maximum_low_carbon_build_rate" type="range" min="0" max="100" value="0">
-      <span id='maximum_low_carbon_build_rate_value'>0</span> TWh/y/y
+      <table>
+        <tr>
+          <td>Maximum low carbon build rate after 2020:</td>
+          <td><input class='control' data-model-parameter-name='maximum_low_carbon_build_rate' type="range" min="0" max="100" value="0"></td>
+          <td class='input' data-model-parameter-name='maximum_low_carbon_build_rate' data-format='.0f'></td>
+          <td>TWh/y/y</td>
+        </tr>
+        <tr>
+          <td>Electricity demand in 2050:</td>
+          <td><input class='control' data-model-parameter-name='electricity_demand_in_2050' type="range" min="0" max="1000" value="600"></td>
+          <td class='input' data-model-parameter-name='electricity_demand_in_2050' data-format='.0f'></td>
+          <td>TWh/y</td>
+        </tr>
+      </table>
     </form>
     <div id='charts'>
       <div id='zero_carbon_build_rate'>
