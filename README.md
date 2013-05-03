@@ -18,11 +18,11 @@ Report bugs to <https://github.com/decc/electricity-build-rate-constraint/issues
 
 To configure a webserver on OSX (done after setup below)
 
-  gem install powder
-  powder install
-  cd /directory_where_this_program_is_installed
-  powder link
-  powder open
+    gem install powder
+    powder install
+    cd /directory_where_this_program_is_installed
+    powder link
+    powder open
   
 The resulting website only works properly on the latest generation of browsers.
 
@@ -30,22 +30,22 @@ Only tested on OSX 10.8.3 so far.
 
 ## Setup
 
-  bundle
-  bundle exec ruby make-model.rb
+    bundle
+    bundle exec ruby make-model.rb
 
 ## Hacking
 
 Written in a combination of Ruby and Coffeescript. 
 
-  electricity-build-rate-constraint.xlsx - The actual model of the electricity system that we are exploring
-  model.c - An computer-generated translation of the excel file into C
-  model.rb - A ruby interface to model.c
-  config.ru and server.rb - Serves 
-    the data from model.rb
-    public/index.html
-    the javascripts refered to in src/javascripts/application.js
-    the stylesheets refered to in src/stylesheets/application.css
-  chart.js.coffee - The main program at the moment.
+    electricity-build-rate-constraint.xlsx - The actual model of the electricity system that we are exploring
+    model.c - An computer-generated translation of the excel file into C
+    model.rb - A ruby interface to model.c
+    config.ru and server.rb - Serves 
+      the data from model.rb
+      public/index.html
+      the javascripts refered to in src/javascripts/application.js
+      the stylesheets refered to in src/stylesheets/application.css
+    chart.js.coffee - The main program at the moment.
 
 Fixes accepted, preferably using 'Fork&Pull' on github: <http://gun.io/blog/how-to-github-fork-branch-and-pull-request/>
 
