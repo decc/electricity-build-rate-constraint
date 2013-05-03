@@ -290,6 +290,18 @@ visualise = () ->
     .datum([ data.series.zero_carbon, data.series.high_carbon ])
     .call(timeSeriesStakedAreaChart().unit("TWh/yr").max_value(700))
 
+  d3.selectAll('.output')
+    .datum(() -> @dataset)
+    .text((d) -> d3.format(d.format)(data.outputs[d.modelParameterName]))
+
+  if +data.outputs.emissions_factor_2050 > 5
+    d3.select('#emissions_warning')
+      .transition(1000)
+      .style("opacity",1)
+  else
+    d3.select('#emissions_warning')
+      .transition(1000)
+      .style("opacity",0)
 
 d3.select('#maximum_low_carbon_build_rate')
   .on('change', () ->

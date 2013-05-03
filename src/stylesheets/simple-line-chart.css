@@ -45,3 +45,10 @@ h1 {
   fill-opacity: 1;
 }
 
+td.output {
+  text-align: right;
+}
+
+#emissions_warning {
+  background-color: yellow;
+}
