@@ -118,8 +118,116 @@ module Model
   attach_function 'reset', [], :void
 
   # start of Model
-  attach_function 'set_model_b9', [ExcelValue.by_value], :void
+  attach_function 'set_model_b3', [ExcelValue.by_value], :void
+  attach_function 'set_model_b4', [ExcelValue.by_value], :void
+  attach_function 'set_model_b31', [ExcelValue.by_value], :void
+  attach_function 'set_model_b32', [ExcelValue.by_value], :void
+  attach_function 'set_model_b47', [ExcelValue.by_value], :void
+  attach_function 'set_model_b7', [ExcelValue.by_value], :void
   attach_function 'set_model_b8', [ExcelValue.by_value], :void
+  attach_function 'set_model_b9', [ExcelValue.by_value], :void
+  attach_function 'set_model_b10', [ExcelValue.by_value], :void
+  attach_function 'set_model_b11', [ExcelValue.by_value], :void
+  attach_function 'set_model_b12', [ExcelValue.by_value], :void
+  attach_function 'set_model_b13', [ExcelValue.by_value], :void
+  attach_function 'set_model_m33', [ExcelValue.by_value], :void
+  attach_function 'set_model_n33', [ExcelValue.by_value], :void
+  attach_function 'set_model_b34', [ExcelValue.by_value], :void
+  attach_function 'set_model_b35', [ExcelValue.by_value], :void
+  attach_function 'set_model_m35', [ExcelValue.by_value], :void
+  attach_function 'set_model_b37', [ExcelValue.by_value], :void
+  attach_function 'set_model_b36', [ExcelValue.by_value], :void
+  attach_function 'set_model_b39', [ExcelValue.by_value], :void
+  attach_function 'set_model_c39', [ExcelValue.by_value], :void
+  attach_function 'set_model_d39', [ExcelValue.by_value], :void
+  attach_function 'set_model_b40', [ExcelValue.by_value], :void
+  attach_function 'set_model_c40', [ExcelValue.by_value], :void
+  attach_function 'set_model_d40', [ExcelValue.by_value], :void
+  attach_function 'set_model_c43', [ExcelValue.by_value], :void
+  attach_function 'set_model_b44', [ExcelValue.by_value], :void
+  attach_function 'set_model_c44', [ExcelValue.by_value], :void
+  attach_function 'set_model_b45', [ExcelValue.by_value], :void
+  attach_function 'set_model_c45', [ExcelValue.by_value], :void
+  attach_function 'set_model_a59', [ExcelValue.by_value], :void
+  attach_function 'set_model_a60', [ExcelValue.by_value], :void
+  attach_function 'set_model_b80', [ExcelValue.by_value], :void
+  attach_function 'set_model_c80', [ExcelValue.by_value], :void
+  attach_function 'set_model_d80', [ExcelValue.by_value], :void
+  attach_function 'set_model_e80', [ExcelValue.by_value], :void
+  attach_function 'set_model_f80', [ExcelValue.by_value], :void
+  attach_function 'set_model_g80', [ExcelValue.by_value], :void
+  attach_function 'set_model_h80', [ExcelValue.by_value], :void
+  attach_function 'set_model_i80', [ExcelValue.by_value], :void
+  attach_function 'set_model_j80', [ExcelValue.by_value], :void
+  attach_function 'set_model_k80', [ExcelValue.by_value], :void
+  attach_function 'set_model_l80', [ExcelValue.by_value], :void
+  attach_function 'set_model_m80', [ExcelValue.by_value], :void
+  attach_function 'set_model_n80', [ExcelValue.by_value], :void
+  attach_function 'set_model_o80', [ExcelValue.by_value], :void
+  attach_function 'set_model_p80', [ExcelValue.by_value], :void
+  attach_function 'set_model_q80', [ExcelValue.by_value], :void
+  attach_function 'set_model_r80', [ExcelValue.by_value], :void
+  attach_function 'set_model_s80', [ExcelValue.by_value], :void
+  attach_function 'set_model_t80', [ExcelValue.by_value], :void
+  attach_function 'set_model_u80', [ExcelValue.by_value], :void
+  attach_function 'set_model_v80', [ExcelValue.by_value], :void
+  attach_function 'set_model_w80', [ExcelValue.by_value], :void
+  attach_function 'set_model_x80', [ExcelValue.by_value], :void
+  attach_function 'set_model_y80', [ExcelValue.by_value], :void
+  attach_function 'set_model_z80', [ExcelValue.by_value], :void
+  attach_function 'set_model_aa80', [ExcelValue.by_value], :void
+  attach_function 'set_model_ab80', [ExcelValue.by_value], :void
+  attach_function 'set_model_ac80', [ExcelValue.by_value], :void
+  attach_function 'set_model_ad80', [ExcelValue.by_value], :void
+  attach_function 'set_model_ae80', [ExcelValue.by_value], :void
+  attach_function 'set_model_af80', [ExcelValue.by_value], :void
+  attach_function 'set_model_ag80', [ExcelValue.by_value], :void
+  attach_function 'set_model_ah80', [ExcelValue.by_value], :void
+  attach_function 'set_model_ai80', [ExcelValue.by_value], :void
+  attach_function 'set_model_aj80', [ExcelValue.by_value], :void
+  attach_function 'set_model_ak80', [ExcelValue.by_value], :void
+  attach_function 'set_model_al80', [ExcelValue.by_value], :void
+  attach_function 'set_model_am80', [ExcelValue.by_value], :void
+  attach_function 'set_model_an80', [ExcelValue.by_value], :void
+  attach_function 'set_model_b83', [ExcelValue.by_value], :void
+  attach_function 'set_model_c83', [ExcelValue.by_value], :void
+  attach_function 'set_model_d83', [ExcelValue.by_value], :void
+  attach_function 'set_model_e83', [ExcelValue.by_value], :void
+  attach_function 'set_model_f83', [ExcelValue.by_value], :void
+  attach_function 'set_model_g83', [ExcelValue.by_value], :void
+  attach_function 'set_model_h83', [ExcelValue.by_value], :void
+  attach_function 'set_model_i83', [ExcelValue.by_value], :void
+  attach_function 'set_model_j83', [ExcelValue.by_value], :void
+  attach_function 'set_model_k83', [ExcelValue.by_value], :void
+  attach_function 'set_model_l83', [ExcelValue.by_value], :void
+  attach_function 'set_model_m83', [ExcelValue.by_value], :void
+  attach_function 'set_model_n83', [ExcelValue.by_value], :void
+  attach_function 'set_model_o83', [ExcelValue.by_value], :void
+  attach_function 'set_model_p83', [ExcelValue.by_value], :void
+  attach_function 'set_model_q83', [ExcelValue.by_value], :void
+  attach_function 'set_model_r83', [ExcelValue.by_value], :void
+  attach_function 'set_model_s83', [ExcelValue.by_value], :void
+  attach_function 'set_model_t83', [ExcelValue.by_value], :void
+  attach_function 'set_model_u83', [ExcelValue.by_value], :void
+  attach_function 'set_model_v83', [ExcelValue.by_value], :void
+  attach_function 'set_model_w83', [ExcelValue.by_value], :void
+  attach_function 'set_model_x83', [ExcelValue.by_value], :void
+  attach_function 'set_model_y83', [ExcelValue.by_value], :void
+  attach_function 'set_model_z83', [ExcelValue.by_value], :void
+  attach_function 'set_model_aa83', [ExcelValue.by_value], :void
+  attach_function 'set_model_ab83', [ExcelValue.by_value], :void
+  attach_function 'set_model_ac83', [ExcelValue.by_value], :void
+  attach_function 'set_model_ad83', [ExcelValue.by_value], :void
+  attach_function 'set_model_ae83', [ExcelValue.by_value], :void
+  attach_function 'set_model_af83', [ExcelValue.by_value], :void
+  attach_function 'set_model_ag83', [ExcelValue.by_value], :void
+  attach_function 'set_model_ah83', [ExcelValue.by_value], :void
+  attach_function 'set_model_ai83', [ExcelValue.by_value], :void
+  attach_function 'set_model_aj83', [ExcelValue.by_value], :void
+  attach_function 'set_model_ak83', [ExcelValue.by_value], :void
+  attach_function 'set_model_al83', [ExcelValue.by_value], :void
+  attach_function 'set_model_am83', [ExcelValue.by_value], :void
+  attach_function 'set_model_an83', [ExcelValue.by_value], :void
   attach_function 'model_b13', [], ExcelValue.by_value
   attach_function 'model_b37', [], ExcelValue.by_value
   attach_function 'model_b48', [], ExcelValue.by_value
@@ -597,6 +705,7 @@ module Model
   attach_function 'low_carbon_load_factor', [], ExcelValue.by_value
   attach_function 'maximum_low_c', [], ExcelValue.by_value
   attach_function 'maximum_low_carbon_build_rate', [], ExcelValue.by_value
+  attach_function 'maximum_low_carbon_build_rate_contraction', [], ExcelValue.by_value
   attach_function 'maximum_low_carbon_build_rate_expansion', [], ExcelValue.by_value
   attach_function 'maxmean2012', [], ExcelValue.by_value
   attach_function 'maxmean2050', [], ExcelValue.by_value
@@ -612,7 +721,28 @@ module Model
   attach_function 'zero_carbon', [], ExcelValue.by_value
   attach_function 'zero_carbon_built', [], ExcelValue.by_value
   attach_function 'zero_carbon_decomissioned', [], ExcelValue.by_value
+  attach_function 'set_average_life_of_low_carbon_generation', [ExcelValue.by_value], :void
+  attach_function 'set_ccs_by_2020', [ExcelValue.by_value], :void
+  attach_function 'set_electricity_demand_growth_rate', [ExcelValue.by_value], :void
+  attach_function 'set_electricity_demand_in_2012', [ExcelValue.by_value], :void
+  attach_function 'set_electricity_demand_in_2050', [ExcelValue.by_value], :void
+  attach_function 'set_electrification_start_year', [ExcelValue.by_value], :void
+  attach_function 'set_high_carbon_emissions_factor_2012', [ExcelValue.by_value], :void
+  attach_function 'set_high_carbon_emissions_factor_2020', [ExcelValue.by_value], :void
+  attach_function 'set_high_carbon_emissions_factor_2050', [ExcelValue.by_value], :void
+  attach_function 'set_maximum_low_c', [ExcelValue.by_value], :void
   attach_function 'set_maximum_low_carbon_build_rate', [ExcelValue.by_value], :void
+  attach_function 'set_maximum_low_carbon_build_rate_contraction', [ExcelValue.by_value], :void
+  attach_function 'set_maximum_low_carbon_build_rate_expansion', [ExcelValue.by_value], :void
+  attach_function 'set_maxmean2012', [ExcelValue.by_value], :void
+  attach_function 'set_maxmean2050', [ExcelValue.by_value], :void
+  attach_function 'set_minimum_low_carbon_build_rate', [ExcelValue.by_value], :void
+  attach_function 'set_minmean2012', [ExcelValue.by_value], :void
+  attach_function 'set_minmean2050', [ExcelValue.by_value], :void
+  attach_function 'set_nuclear_change_2012_2020', [ExcelValue.by_value], :void
+  attach_function 'set_nuclear_in_2012', [ExcelValue.by_value], :void
+  attach_function 'set_renewable_electricity_in_2020', [ExcelValue.by_value], :void
+  attach_function 'set_renewables_in_2012', [ExcelValue.by_value], :void
   attach_function 'set_year_second_wave_of_building_starts', [ExcelValue.by_value], :void
   # End of named references
 end
