@@ -15,6 +15,10 @@ def extract_model_structure
   relevant_methods = relevant_methods.find_all do |m|
     m.to_s !~ /^(set_)?model_/
   end
+  setters = relevant_methods.find_all do |m|
+    m.to_s != /^set_/
+  end
+  p setters.map { |m| m[/^set_(.*)$/,1] }
   # Remove all the setters, because there will be a getter
   relevant_methods = relevant_methods.find_all do |m|
     m.to_s !~ /^set_/
@@ -31,7 +35,18 @@ url_structure = [
   "version",
   "maximum_low_carbon_build_rate",
   "electrification_start_year",
-  "electricity_demand_in_2050"
+  "electricity_demand_in_2050",
+  "average_life_of_low_carbon_generation",
+  "ccs_by_2020",
+  "high_carbon_emissions_factor_2020", 
+  "high_carbon_emissions_factor_2050", 
+  "maximum_low_carbon_build_rate_contraction", 
+  "maximum_low_carbon_build_rate_expansion", 
+  "maxmean2050", 
+  "minimum_low_carbon_build_rate",
+  "minmean2050", 
+  "nuclear_change_2012_2020" ,
+  "renewable_electricity_in_2020"
 ] - ["version"] # A cludge to make the above lines easier to copy and paste
 
 # This is the method that is used to request data from the model

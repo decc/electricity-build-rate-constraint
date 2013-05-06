@@ -10,7 +10,18 @@ url_structure = [
   "version",
   "maximum_low_carbon_build_rate",
   "electrification_start_year",
-  "electricity_demand_in_2050"
+  "electricity_demand_in_2050",
+  "average_life_of_low_carbon_generation",
+  "ccs_by_2020",
+  "high_carbon_emissions_factor_2020",
+  "high_carbon_emissions_factor_2050",
+  "maximum_low_carbon_build_rate_contraction",
+  "maximum_low_carbon_build_rate_expansion",
+  "maxmean2050",
+  "minimum_low_carbon_build_rate",
+  "minmean2050",
+  "nuclear_change_2012_2020" ,
+  "renewable_electricity_in_2020"
 ]
 
 update = () ->
@@ -34,7 +45,10 @@ window.onpopstate = () ->
 
 urlForSettings = () ->
   url = for a in url_structure
-    s[a]
+    if s[a]?
+      s[a]
+    else
+      ""
   "/" + url.join('/')
 
 getSettingsFromUrl = () ->
