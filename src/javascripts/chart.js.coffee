@@ -294,10 +294,6 @@ visualise = () ->
     .datum([ data.zero_carbon, data.high_carbon ])
     .call(timeSeriesStakedAreaChart().unit("TWh/yr").max_value(700))
 
-  d3.selectAll('.input')
-    .datum(() -> @dataset)
-    .text((d) -> d3.format(d.format)(data[d.modelParameterName]))
-
   d3.selectAll('.output')
     .datum(() -> @dataset)
     .text((d) -> d3.format(d.format)(data[d.modelParameterName]))
