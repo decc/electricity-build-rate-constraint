@@ -8,20 +8,20 @@
       <table>
         <tr>
           <td>Maximum low carbon build rate after 2020:</td>
-          <td><input class='control' data-model-parameter-name='maximum_low_carbon_build_rate' type="range" min="0" max="100" value="0"></td>
-          <td class='output' data-model-parameter-name='maximum_low_carbon_build_rate' data-format='.0f'></td>
+          <td><input class='control' data-name='maximum_low_carbon_build_rate' type="range" min="0" max="100" value="0"></td>
+          <td class='output' data-name='maximum_low_carbon_build_rate' data-format='.0f'></td>
           <td>TWh/y/y</td>
         </tr>
         <tr>
           <td>Year in which widespread electrification of demand starts:</td>
-          <td><input class='control' data-model-parameter-name='electrification_start_year' type="range" min="2010" max="2050" value="2020"></td>
-          <td class='output' data-model-parameter-name='electrification_start_year' data-format='.0f'></td>
+          <td><input class='control' data-name='electrification_start_year' type="range" min="2010" max="2050" value="2020"></td>
+          <td class='output' data-name='electrification_start_year' data-format='.0f'></td>
           <td></td>
         </tr>
         <tr>
           <td>Electricity demand in 2050:</td>
-          <td><input class='control' data-model-parameter-name='electricity_demand_in_2050' type="range" min="0" max="1000" value="600"></td>
-          <td class='output' data-model-parameter-name='electricity_demand_in_2050' data-format='.0f'></td>
+          <td><input class='control' data-name='electricity_demand_in_2050' type="range" min="0" max="1000" value="600"></td>
+          <td class='output' data-name='electricity_demand_in_2050' data-format='.0f'></td>
           <td>TWh/y</td>
         </tr>
       </table>
@@ -47,9 +47,9 @@
     </div>
     <div id='outputs'>
       <table>
-        <tr><td>Emissions from electricity over carbon budget four:</td><td class='output' data-model-parameter-name='electricity_emissions_during_cb4' data-format='.3r'></td><td>MtCO<sub>2</sub>/5year</td></tr>
-        <tr><td>Emissions from electricity in 2030:</td><td class='output' data-model-parameter-name='emissions_factor_2030' data-format='.0f'></td><td>gCO<sub>2</sub>/kWh</td></tr>
-        <tr><td>Emissions from electricity in 2050:</td><td class='output' data-model-parameter-name='emissions_factor_2050' data-format='.0f'></td><td>gCO<sub>2</sub>/kWh</td></tr>
+        <tr><td>Emissions from electricity over carbon budget four:</td><td class='output' data-name='electricity_emissions_during_cb4' data-format='.3r'></td><td>MtCO<sub>2</sub>/5year</td></tr>
+        <tr><td>Emissions from electricity in 2030:</td><td class='output' data-name='emissions_factor_2030' data-format='.0f'></td><td>gCO<sub>2</sub>/kWh</td></tr>
+        <tr><td>Emissions from electricity in 2050:</td><td class='output' data-name='emissions_factor_2050' data-format='.0f'></td><td>gCO<sub>2</sub>/kWh</td></tr>
       </table>
     </div>
   <script src='/assets/application.js' type='text/javascript'></script>

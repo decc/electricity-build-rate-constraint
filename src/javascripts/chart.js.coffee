@@ -296,7 +296,7 @@ visualise = () ->
 
   d3.selectAll('.output')
     .datum(() -> @dataset)
-    .text((d) -> d3.format(d.format)(data[d.modelParameterName]))
+    .text((d) -> d3.format(d.format)(data[d.name]))
 
   if +data.emissions_factor_2050 > 5
     d3.select('#emissions_warning')
@@ -310,14 +310,14 @@ visualise = () ->
 d3.selectAll('.control')
   .datum(() -> @dataset)
   .on('change', (d) ->
-    s[d.modelParameterName] = +this.value
+    s[d.name] = +this.value
     update()
   )
 
 updateControlsFromSettings = () ->
   d3.selectAll('.control')
     .datum(() -> @dataset)
-    .property('value', (d) -> s[d.modelParameterName])
+    .property('value', (d) -> s[d.name])
 
 getSettingsFromUrl()
 updateControlsFromSettings()
