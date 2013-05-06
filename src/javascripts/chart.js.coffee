@@ -314,6 +314,14 @@ d3.selectAll('.control')
     update()
   )
 
+d3.selectAll('.preset')
+  .datum(() -> @dataset)
+  .on('click', (d) ->
+    s[d.name] = +d.value
+    updateControlsFromSettings()
+    update()
+  )
+
 updateControlsFromSettings = () ->
   d3.selectAll('.control')
     .datum(() -> @dataset)

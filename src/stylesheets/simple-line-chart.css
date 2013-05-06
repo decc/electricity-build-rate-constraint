@@ -52,3 +52,9 @@ td.output {
 #emissions_warning {
   background-color: yellow;
 }
+
+.preset {
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}
