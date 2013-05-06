@@ -8,10 +8,6 @@ require './model'
 module FFIMethodsToIgnore; extend FFI::Library; end
 
 # This is used to work out what named references exist in the model
-# and then to assign them to one of three groups:
-# inputs - named references that are setable
-# series - named references that return an array
-# outputs - any other named references
 def extract_model_structure
   # Get all the excel references
   relevant_methods = (Model.methods - FFIMethodsToIgnore.methods - [:reset])
@@ -19,22 +15,12 @@ def extract_model_structure
   relevant_methods = relevant_methods.find_all do |m|
     m.to_s !~ /^(set_)?model_/
   end
-  structure = { inputs: [], outputs: [], series: [] } 
-  relevant_methods.each do |method|
-    # If it is a setter, it must be an input
-    if method =~ /^set_(.*?)$/
-     structure[:inputs] << $1
-    # If it is an array, then we add it as a series
-    elsif ModelShim.new.send(method).is_a?(Array)
-     structure[:series] << method.to_s 
-    # Otherwise it must be an output
-    else
-      structure[:outputs] << method.to_s
-    end
+  # Remove all the setters, because there will be a getter
+  relevant_methods = relevant_methods.find_all do |m|
+    m.to_s !~ /^set_/
   end
-  # Remove inputs from outputs
-  structure[:outputs] = structure[:outputs] - structure[:inputs]
-  structure
+  # And return the array
+  relevant_methods
 end
 
 # Only work out the model structure once
@@ -73,13 +59,10 @@ get '/data/1/*' do
   end
 
   result = {}
-  model_structure.each do |key, value|
-    result[key] = h = {}
-    value.each do |method|
-      r = m.send(method)
-      r.flatten! if r.is_a?(Array) && r.length == 1
-      h[method] = r
-    end
+  model_structure.each do |method|
+    r = m.send(method)
+    r.flatten! if r.is_a?(Array) && r.length == 1
+    result[method] = r
   end
 
   result.to_json

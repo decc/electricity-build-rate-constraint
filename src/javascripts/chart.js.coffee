@@ -279,30 +279,30 @@ timeSeriesStakedAreaChart = ->
 
 visualise = () ->
   d3.select('#zero_carbon_build_rate')
-    .datum(data.series.zero_carbon_built)
+    .datum(data.zero_carbon_built)
     .call(timeSeriesChart().unit("TWh/yr/yr").max_value(100))
 
   d3.select('#emissions')
-    .datum(data.series.emissions)
+    .datum(data.emissions)
     .call(timeSeriesChart().unit("MtCO2/yr").max_value(200))
 
   d3.select('#emissions_factor')
-    .datum(data.series.emissions_factor)
+    .datum(data.emissions_factor)
     .call(timeSeriesChart().unit("gCO2/kWh").max_value(500))
 
   d3.select('#energy_output')
-    .datum([ data.series.zero_carbon, data.series.high_carbon ])
+    .datum([ data.zero_carbon, data.high_carbon ])
     .call(timeSeriesStakedAreaChart().unit("TWh/yr").max_value(700))
 
   d3.selectAll('.input')
     .datum(() -> @dataset)
-    .text((d) -> d3.format(d.format)(data.inputs[d.modelParameterName]))
+    .text((d) -> d3.format(d.format)(data[d.modelParameterName]))
 
   d3.selectAll('.output')
     .datum(() -> @dataset)
-    .text((d) -> d3.format(d.format)(data.outputs[d.modelParameterName]))
+    .text((d) -> d3.format(d.format)(data[d.modelParameterName]))
 
-  if +data.outputs.emissions_factor_2050 > 5
+  if +data.emissions_factor_2050 > 5
     d3.select('#emissions_warning')
       .transition(1000)
       .style("opacity",1)
