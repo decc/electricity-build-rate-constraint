@@ -317,6 +317,12 @@ visualise = () ->
       .transition(1000)
       .style("opacity",0)
 
+  # Update the controls to defaults if required
+  d3.selectAll('.control')
+    .datum(() -> @dataset)
+    .filter( (d) -> not s[d.name]? )
+    .property('value', (d) -> data[d.name])
+
 d3.selectAll('.control')
   .datum(() -> @dataset)
   .on('change', (d) ->
