@@ -55,6 +55,76 @@
         <tr><td>Emissions from electricity in 2050:</td><td class='output' data-name='emissions_factor_2050' data-format='.0f'></td><td>gCO<sub>2</sub>/kWh</td></tr>
       </table>
     </div>
+    <form>
+      <table>
+        <tr>
+          <td>Average lifespan of low carbon generation:</td>
+          <td><input class='control' data-name='average_life_of_low_carbon_generation' type="range" min="0" max="60" value="30"></td>
+          <td class='output' data-name='average_life_of_low_carbon_generation' data-format='.0f'></td>
+          <td>Years</td>
+        </tr>
+        <tr>
+          <td>CCS by 2020:</td>
+          <td><input class='control' data-name='ccs_by_2020' type="range" min="0" max="10" value="5"></td>
+          <td class='output' data-name='ccs_by_2020' data-format='.0f'></td>
+          <td>TWh/y</td>
+        </tr>
+        <tr>
+          <td>Emissions factor for fossil fuel generation in 2020:</td>
+          <td><input class='control' data-name='high_carbon_emissions_factor_2020' type="range" min="0" max="1000" value="370"></td>
+          <td class='output' data-name='high_carbon_emissions_factor_2020' data-format='.0f'></td>
+          <td>gCO2/kWh</td>
+        </tr>
+        <tr>
+          <td>Emissions factor for fossil fuel generation in 2050:</td>
+          <td><input class='control' data-name='high_carbon_emissions_factor_2050' type="range" min="0" max="1000" value="350"></td>
+          <td class='output' data-name='high_carbon_emissions_factor_2050' data-format='.0f'></td>
+          <td>gCO2/kWh</td>
+        </tr>
+        <tr>
+          <td>Maximum drop in low carbon construction rate in a year:</td>
+          <td><input class='control' data-name='maximum_low_carbon_build_rate_contraction' type="range" min="0" max="1" value="1" step='0.05'></td>
+          <td class='output' data-name='maximum_low_carbon_build_rate_contraction' data-format='p'></td>
+          <td>Proportion of previous year's construction (0 means can't shrink, 50% means can halve in a year, 100% means can drop to nothing in a year)</td>
+        </tr>
+        <tr>
+          <td>Maximum increase in low carbon construction rate in a year:</td>
+          <td><input class='control' data-name='maximum_low_carbon_build_rate_expansion' type="range" min="0" max="1" value="0.5" step='0.05'></td>
+          <td class='output' data-name='maximum_low_carbon_build_rate_expansion' data-format='p'></td>
+          <td>Proportion of previous year's construction (0 means can't expand, 50% means can grow by half each year, 100% means can double in size each year)</td>
+        </tr>
+        <tr>
+          <td>Level of low carbon construction capacity that will always be available:</td>
+          <td><input class='control' data-name='minimum_low_carbon_build_rate' type="range" min="0" max="10" value="0.5" step='0.5'></td>
+          <td class='output' data-name='minimum_low_carbon_build_rate' data-format='.1f'></td>
+          <td>TWh/y (even if the industry has been completely collapsed, could still get this much in a year though imports or restarting the industr)</td>
+        </tr>
+        <tr>
+          <td>Proportion of electricity from renewable sources in 2020:</td>
+          <td><input class='control' data-name='renewable_electricity_in_2020' type="range" min="0" max="1" value="0.35" step='0.05'></td>
+          <td class='output' data-name='renewable_electricity_in_2020' data-format='p'></td>
+          <td>Proportion of electricity</td>
+        </tr>
+        <tr>
+          <td>Increase in nuclear power generation by 2020:</td>
+          <td><input class='control' data-name='nuclear_change_2012_2020' type="range" min="-59" max="20" value="10"></td>
+          <td class='output' data-name='nuclear_change_2012_2020' data-format='.0f'></td>
+          <td>TWh/y above today's level</td>
+        </tr>
+        <tr>
+          <td>Maximum electricity demand as a proportion of the demand:</td>
+          <td><input class='control' data-name='maxmean2050' type="range" min="0" max="5" value="2" step='0.5'></td>
+          <td class='output' data-name='maxmean2050' data-format='p'></td>
+          <td>100% implies perfect energy storage. 200% means peak demand is twice mean demand'</td>
+        </tr>
+        <tr>
+          <td>Minimum electricity demand as a proportion of the mean demand:</td>
+          <td><input class='control' data-name='minmean2050' type="range" min="0" max="1" value="0.5" step='0.1'></td>
+          <td class='output' data-name='minmean2050' data-format='p'></td>
+          <td>100% implies perfect energy storage. 0% means electricity demand sometimes falls to zero. </td>
+        </tr>
+      </table>
+    </form> 
   <script src='/assets/application.js' type='text/javascript'></script>
   </body>
 </html>

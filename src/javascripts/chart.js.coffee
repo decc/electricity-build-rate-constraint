@@ -2,9 +2,6 @@ data = {}
 request = undefined
 s =
   version: 1
-  maximum_low_carbon_build_rate: 0
-  electrification_start_year: 2020
-  electricity_demand_in_2050: 600
 
 url_structure = [
   "version",
@@ -12,16 +9,16 @@ url_structure = [
   "electrification_start_year",
   "electricity_demand_in_2050",
   "average_life_of_low_carbon_generation",
+  "renewable_electricity_in_2020",
   "ccs_by_2020",
+  "nuclear_change_2012_2020" ,
   "high_carbon_emissions_factor_2020",
   "high_carbon_emissions_factor_2050",
   "maximum_low_carbon_build_rate_contraction",
   "maximum_low_carbon_build_rate_expansion",
-  "maxmean2050",
   "minimum_low_carbon_build_rate",
+  "maxmean2050",
   "minmean2050",
-  "nuclear_change_2012_2020" ,
-  "renewable_electricity_in_2020"
 ]
 
 update = () ->
@@ -49,11 +46,10 @@ urlForSettings = () ->
       s[a]
     else
       ""
-  "/" + url.join('/')
+  "/" + url.join(':')
 
 getSettingsFromUrl = () ->
-  c = window.location.pathname.split('/')
-  c.shift()
+  c = window.location.pathname.substring(1).split(':')
 
   for a,i in url_structure
     if c[i]? and c[i] != ""
@@ -324,6 +320,7 @@ visualise = () ->
 d3.selectAll('.control')
   .datum(() -> @dataset)
   .on('change', (d) ->
+    # console.log d.name, this.value
     s[d.name] = +this.value
     update()
   )
@@ -339,6 +336,7 @@ d3.selectAll('.preset')
 updateControlsFromSettings = () ->
   d3.selectAll('.control')
     .datum(() -> @dataset)
+    .filter( (d) -> s[d.name]? )
     .property('value', (d) -> s[d.name])
 
 getSettingsFromUrl()
