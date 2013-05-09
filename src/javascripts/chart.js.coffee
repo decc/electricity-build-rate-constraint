@@ -308,7 +308,7 @@ visualise = () ->
     .datum(() -> @dataset)
     .text((d) -> d3.format(d.format)(data[d.name]))
 
-  if +data.emissions_factor_2050 > 5
+  if +data.electricity_emissions_absolute_2050 >= 10
     d3.select('#emissions_warning')
       .transition(1000)
       .style("opacity",1)

@@ -72,7 +72,7 @@ get '/data/1:*' do
       m.send(url_structure[i]+"=",v)
     end
     m.year_second_wave_of_building_starts = year
-    break if m.emissions_factor_2050 < 5
+    break if m.electricity_emissions_absolute_2050 < 10
     year = year - 1
   end
 
