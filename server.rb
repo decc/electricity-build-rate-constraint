@@ -48,7 +48,8 @@ url_structure = [
   "maximum_low_carbon_build_rate_expansion", 
   "minimum_low_carbon_build_rate",
   "maxmean2050", 
-  "minmean2050" 
+  "minmean2050",
+  "annual_change_in_non_electricity_traded_emissions"
 ] - ["version"] # A cludge to make the above lines easier to copy and paste
 
 # This is the method that is used to request data from the model

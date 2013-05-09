@@ -50,9 +50,9 @@
     </div>
     <div id='outputs'>
       <table>
-        <tr><td>Emissions from electricity over carbon budget four:</td><td class='output' data-name='electricity_emissions_during_cb4' data-format='.3r'></td><td>MtCO<sub>2</sub>/5year</td></tr>
-        <tr><td>Emissions from electricity in 2030:</td><td class='output' data-name='emissions_factor_2030' data-format='.0f'></td><td>gCO<sub>2</sub>/kWh</td></tr>
-        <tr><td>Emissions from electricity in 2050:</td><td class='output' data-name='emissions_factor_2050' data-format='.0f'></td><td>gCO<sub>2</sub>/kWh</td></tr>
+        <tr><td>Emissions over carbon budget four:</td><td class='output' data-name='electricity_emissions_during_cb4' data-format='.3r'></td><td>MtCO<sub>2</sub>/5year</td></tr>
+        <tr><td>Emissions factor for electricity in 2030:</td><td class='output' data-name='emissions_factor_2030' data-format='.0f'></td><td>gCO<sub>2</sub>/kWh</td></tr>
+        <tr><td>Emissions factor for electricity in 2050:</td><td class='output' data-name='emissions_factor_2050' data-format='.0f'></td><td>gCO<sub>2</sub>/kWh</td></tr>
       </table>
     </div>
     <form>
@@ -122,6 +122,12 @@
           <td><input class='control' data-name='minmean2050' type="range" min="0" max="1" value="0.5" step='0.1'></td>
           <td class='output' data-name='minmean2050' data-format='p'></td>
           <td>100% implies perfect energy storage. 0% means electricity demand sometimes falls to zero. </td>
+        </tr>
+        <tr>
+          <td>Annual change in non-electricity traded emissions:</td>
+          <td><input class='control' data-name='annual_change_in_non_electricity_traded_emissions' type="range" min="-0.1" max="0.1" value="-0.03" step='0.01'></td>
+          <td class='output' data-name='annual_change_in_non_electricity_traded_emissions' data-format='p'></td>
+          <td>These are mainly industrial emissions.</td>
         </tr>
       </table>
     </form> 

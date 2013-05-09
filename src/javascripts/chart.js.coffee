@@ -19,6 +19,7 @@ url_structure = [
   "minimum_low_carbon_build_rate",
   "maxmean2050",
   "minmean2050",
+  "annual_change_in_non_electricity_traded_emissions"
 ]
 
 update = () ->
