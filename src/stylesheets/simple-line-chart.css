@@ -2,6 +2,10 @@ body {
   font: 10px sans-serif;
 }
 
+td {
+  font: 10px sans-serif;
+}
+
 h1 {
 	margin-bottom: 0;
 }
