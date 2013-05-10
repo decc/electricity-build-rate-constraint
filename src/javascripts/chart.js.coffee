@@ -324,6 +324,10 @@ visualise = () ->
     .datum([data.emissions, data.non_electricity_traded_sector_emissions])
     .call(timeSeriesStakedAreaChart().unit("MtCO2/yr").max_value(300))
 
+  d3.select('#emissions')
+    .datum([data.uk_share_of_eu_ets_cap_current.slice(0,16), data.uk_share_of_eu_ets_cap_alternative.slice(0,16)])
+    .call(timeSeriesChart().unit("MtCO2/yr").max_value(300))
+
   # Update the controls to defaults if required
   d3.selectAll('.control')
     .datum(() -> @dataset)
