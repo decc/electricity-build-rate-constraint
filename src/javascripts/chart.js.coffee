@@ -286,21 +286,6 @@ timeSeriesStakedAreaChart = ->
   chart
 
 visualise = () ->
-  d3.select('#zero_carbon_build_rate')
-    .datum([data.zero_carbon_built])
-    .call(timeSeriesChart().unit("TWh/yr/yr").max_value(100))
-
-  d3.select('#emissions')
-    .datum([data.emissions])
-    .call(timeSeriesChart().unit("MtCO2/yr").max_value(200))
-
-  d3.select('#emissions_factor')
-    .datum([data.emissions_factor])
-    .call(timeSeriesChart().unit("gCO2/kWh").max_value(500))
-
-  d3.select('#energy_output')
-    .datum([ data.zero_carbon, data.high_carbon ])
-    .call(timeSeriesStakedAreaChart().unit("TWh/yr").max_value(700))
 
   d3.selectAll('.output')
     .datum(() -> @dataset)
@@ -314,6 +299,30 @@ visualise = () ->
     d3.select('#emissions_warning')
       .transition(1000)
       .style("opacity",0)
+
+  d3.select('#build_rates')
+    .datum([data.zero_carbon_built, data.required_high_carbon_construction])
+    .call(timeSeriesChart().unit("TWh/yr/yr").max_value(100))
+
+  d3.select('#capacity')
+    .datum([ data.low_carbon_generation_capacity, data.high_carbon_generation_capacity ])
+    .call(timeSeriesStakedAreaChart().unit("TWh/yr").max_value(1500))
+
+  d3.select('#load_factor')
+    .datum([data.low_carbon_load_factor, data.high_carbon_load_factor, data.mean_load_factor])
+    .call(timeSeriesChart().unit("").max_value(1))
+
+  d3.select('#energy_output')
+    .datum([ data.zero_carbon, data.high_carbon ])
+    .call(timeSeriesStakedAreaChart().unit("TWh/yr").max_value(700))
+
+  d3.select('#emissions_factor')
+    .datum([data.emissions_factor])
+    .call(timeSeriesChart().unit("gCO2/kWh").max_value(500))
+
+  d3.select('#emissions')
+    .datum([data.emissions, data.non_electricity_traded_sector_emissions])
+    .call(timeSeriesStakedAreaChart().unit("MtCO2/yr").max_value(300))
 
   # Update the controls to defaults if required
   d3.selectAll('.control')

@@ -58,9 +58,27 @@ h1 {
   fill-opacity: 1;
 }
 
+.line0 {
+  stroke: green;
+}
+
 .area1 {
   fill: red;
   fill-opacity: 1;
+}
+
+.line1 {
+  stroke: red;
+}
+
+#emissions .area0 {
+  fill: red;
+  fill-opacity: 1;
+}
+
+#emissions .area1 {
+  fill: grey;
+  fill-opacity: 0.5;
 }
 
 td.output {
