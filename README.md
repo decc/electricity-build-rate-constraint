@@ -49,6 +49,16 @@ Written in a combination of Ruby and Coffeescript.
 
 Fixes accepted, preferably using 'Fork&Pull' on github: <http://gun.io/blog/how-to-github-fork-branch-and-pull-request/>
 
+## The parallel demo
+
+This is a bit experimental.
+
+Steps: 
+
+    bundle exec ruby montecarlo.rb > public/runs.csv
+    powder open
+    go to /parallel.html in your browser
+
 ## Licence
 
 Open source: The MIT License (MIT)
