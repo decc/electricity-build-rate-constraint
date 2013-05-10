@@ -111,12 +111,6 @@ timeSeriesChart = ->
 
       # And the basic bits
       gEnter
-        .append("path")
-        .attr("class", "area")
-      gEnter
-        .append("path")
-        .attr("class", "line")
-      gEnter
         .append("g")
         .attr("class", "x axis")
       gEnter
@@ -134,15 +128,6 @@ timeSeriesChart = ->
       # Update the inner dimensions.
       g = svg.select("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")")
       
-      # Update the area path.
-      g.select(".area")
-        .transition()
-          .attr("d", area.y0(yScale.range()[0]))
-      
-      # Update the line path.
-      g.select(".line")
-        .transition()
-          .attr("d", line)
       
       # Update the x-axis.
       g.select(".x.axis")
@@ -154,9 +139,21 @@ timeSeriesChart = ->
         .attr("transform", "translate(0," + xScale.range()[0] + ")")
         .call(yAxis)
 
+      # Update the y-axis label.
       g.select(".y.axislabel")
         .attr("transform", "translate(0," + (xScale.range()[0] - 10) + ")")
         .text(unit)
+
+      # Update the lines
+      lines = g.selectAll(".line")
+        .data(Object)
+
+      lines.enter()
+        .append("path")
+        .attr("class", (d,i) -> "line line#{i}")
+
+      lines.transition()
+        .attr("d", line)
 
   chart.unit = (_) ->
     return unit unless _?
@@ -290,15 +287,15 @@ timeSeriesStakedAreaChart = ->
 
 visualise = () ->
   d3.select('#zero_carbon_build_rate')
-    .datum(data.zero_carbon_built)
+    .datum([data.zero_carbon_built])
     .call(timeSeriesChart().unit("TWh/yr/yr").max_value(100))
 
   d3.select('#emissions')
-    .datum(data.emissions)
+    .datum([data.emissions])
     .call(timeSeriesChart().unit("MtCO2/yr").max_value(200))
 
   d3.select('#emissions_factor')
-    .datum(data.emissions_factor)
+    .datum([data.emissions_factor])
     .call(timeSeriesChart().unit("gCO2/kWh").max_value(500))
 
   d3.select('#energy_output')
