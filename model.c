@@ -1,4 +1,4 @@
-// /Users/tamc/Documents/github/electricity-build-rate-constraint/electricity-build-rate-constraint.xlsx approximately translated into C
+// /Users/tamc/Documents/github/electricity-build-rate-constraint/public/electricity-build-rate-constraint.xlsx approximately translated into C
 // First we have c versions of all the excel functions that we know
 #include <stdio.h>
 #include <assert.h>

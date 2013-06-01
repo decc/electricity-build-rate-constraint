@@ -99,3 +99,7 @@ td.output {
   color: blue;
   cursor: pointer;
 }
+
+#refs {
+  clear:both;
+}
