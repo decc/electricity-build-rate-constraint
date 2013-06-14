@@ -2,13 +2,18 @@
  	<link rel='stylesheet' href='/assets/application.css' type='text/css' media='screen' />
   <body>
     <h1>Low carbon electricity ready reckoner</h1>
-    <p>Tries to show a scenario for the electricity sector that has 2050 emissions below 10 MtCO<sub>2</sub> in 2050 given the following assumptions</p>
-    <p id='emissions_warning'>Warning: cannot get 2050 emissions below 10 MtCO<sub>2</sub> given these assumptions. Try increasing the maximum low carbon build rate after 2020.</p>
+    <p>Tries to show a scenario for the electricity sector that has 2050 emissions from electricity below 10 MtCO<sub>2</sub> in 2050 given the following assumptions. Please note it is ALPHA and is currently not to be trusted.</p>
+    <p id='emissions_warning'>Warning: cannot get 2050 electricity emissions below 10 MtCO<sub>2</sub> given these assumptions. Try increasing the maximum low carbon build rate after 2020.</p>
     <div id='outputs'>
       <h2>Outputs</h2>
       <table>
-        <tr><td>Emissions over carbon budget four:</td><td class='output' data-name='electricity_emissions_during_cb4' data-format='.3r'></td><td>MtCO<sub>2</sub>/5year</td></tr>
-        <tr><td>Emissions factor for electricity in 2030:</td><td class='output' data-name='emissions_factor_2030' data-format='.0f'></td><td>gCO<sub>2</sub>/kWh</td></tr>
+        <tr><td>Renewable electricity in 2020</td><td><span class='output' data-name='n_2020_renewables_target_twh' data-format='.0f'></span> TWh (<span class='output' data-name='n_2020_renewables_target' data-format='.2p'></span>)</td></tr>
+        <tr><td>Emissions over CB2</td><td><span class='output' data-name='cb2_scenario' data-format='.0f'></span> MtCO<sub>2</sub> (<span class='output' data-name='cb2_net_ets_purchase' data-format='.1f'></span>)</td></tr>
+        <tr><td>Emissions over CB3</td><td><span class='output' data-name='cb3_scenario' data-format='.0f'></span> MtCO<sub>2</sub> (<span class='output' data-name='cb3_net_ets_purchase' data-format='.1f'></span>)</td></tr>
+        <tr><td>Emissions over current CB4</td><td><span class='output' data-name='cb4_current_scenario' data-format='.0f'></span> MtCO<sub>2</sub> (<span class='output' data-name='cb4_current_net_ets_purchase' data-format='.1f'></span>)</td></tr>
+        <tr><td>Emissions over increased CB4</td><td><span class='output' data-name='cb4_revised_scenario' data-format='.0f'></span> MtCO<sub>2</sub> (<span class='output' data-name='cb4_revised_net_ets_purchase' data-format='.1f'></span>)</td></tr>
+        <tr><td>Grid intensity 2020</td><td><span class='output' data-name='n_2020_renewables_target_gco2_kwh' data-format='.0f'></span> gCO2/kWh</tr></tr>
+        <tr><td>Grid intensity 2030</td><td><span class='output' data-name='n_2030_decarbonisation_level' data-format='.0f'></span> gCO2/kWh</tr></tr>
       </table>
       <div id='charts'>
         <div id='build_rates'>
@@ -39,103 +44,124 @@
       </div>
     </div>
     <div id='inputs'>
-      <h2>Inputs</h2>
       <form>
+        <h2>Inputs relating to 2012-2020</h2>
         <table>
           <tr>
-            <td>Maximum low carbon build rate after 2020:</td>
-            <td><input class='control' data-name='maximum_low_carbon_build_rate' type="range" min="0" max="100" value="0"></td>
-            <td class='output' data-name='maximum_low_carbon_build_rate' data-format='.0f'></td>
-            <td>
-              TWh/y/y
-              <span class='preset' data-name='maximum_low_carbon_build_rate' data-value='11'>Level 2 nuclear</span>
-              <span class='preset' data-name='maximum_low_carbon_build_rate' data-value='26'>Level 3 nuclear</span>
-              <span class='preset' data-name='maximum_low_carbon_build_rate' data-value='44'>Level 4 nuclear</span>
-            </td>
+            <td>Low carbon build rate from now to 2020:</td>
+            <td><input class='control' data-name='build_rate_from_now_to_2020' type="range" min="0" max="12" value="1" step='0.1'></td>
+            <td class='output' data-name='build_rate_from_now_to_2020' data-format='.1f'></td>
+            <td>GW/y</td>
           </tr>
           <tr>
-            <td>Year in which widespread electrification of demand starts:</td>
-            <td><input class='control' data-name='electrification_start_year' type="range" min="2015" max="2049" value="2020"></td>
-            <td class='output' data-name='electrification_start_year' data-format='.0f'></td>
-            <td></td>
+            <td>Proportion of this build rate that is wind:</td>
+            <td><input class='control' data-name='proportion_of_build_rate_to_2020_that_is_wind_rest_is_bio' type="range" min="0" max="1" value="0.0" step='0.01'></td>
+            <td class='output' data-name='proportion_of_build_rate_to_2020_that_is_wind_rest_is_bio' data-format='p'></td>
+            <td>of build</td>
           </tr>
           <tr>
-            <td>Electricity demand in 2050:</td>
-            <td><input class='control' data-name='electricity_demand_in_2050' type="range" min="0" max="1000" value="600"></td>
-            <td class='output' data-name='electricity_demand_in_2050' data-format='.0f'></td>
-            <td>TWh/y</td>
-          </tr>
-          <tr>
-            <td>Average lifespan of low carbon generation:</td>
-            <td><input class='control' data-name='average_life_of_low_carbon_generation' type="range" min="0" max="60" value="30"></td>
-            <td class='output' data-name='average_life_of_low_carbon_generation' data-format='.0f'></td>
-            <td>Years</td>
-          </tr>
-          <tr>
-            <td>CCS by 2020:</td>
-            <td><input class='control' data-name='ccs_by_2020' type="range" min="0" max="10" value="5"></td>
-            <td class='output' data-name='ccs_by_2020' data-format='.0f'></td>
+            <td>Non-renewable low carbon generation in 2020 (i.e., nuclear, CCS)</td>
+            <td><input class='control' data-name='n_2020_non_renewable_low_carbon_generation_i_e_nuclear_ccs' type="range" min="0" max="10" value="5"></td>
+            <td class='output' data-name='n_2020_non_renewable_low_carbon_generation_i_e_nuclear_ccs' data-format='.0f'></td>
             <td>TWh/y</td>
           </tr>
           <tr>
             <td>Emissions factor for fossil fuel generation in 2020:</td>
-            <td><input class='control' data-name='high_carbon_emissions_factor_2020' type="range" min="0" max="1000" value="370"></td>
-            <td class='output' data-name='high_carbon_emissions_factor_2020' data-format='.0f'></td>
+            <td><input class='control' data-name='n_2020_fossil_fuel_emissions_factor' type="range" min="0" max="1000" value="370"></td>
+            <td class='output' data-name='n_2020_fossil_fuel_emissions_factor' data-format='.0f'></td>
             <td>gCO2/kWh</td>
           </tr>
+        </table>
+        <h2>Inputs relating to 2020-2050</h2>
+        <table>
           <tr>
-            <td>Emissions factor for fossil fuel generation in 2050:</td>
-            <td><input class='control' data-name='high_carbon_emissions_factor_2050' type="range" min="0" max="1000" value="350"></td>
-            <td class='output' data-name='high_carbon_emissions_factor_2050' data-format='.0f'></td>
-            <td>gCO2/kWh</td>
+            <td>Target low carbon build rate:</td>
+            <td><input class='control' data-name='build_rate_target_in_second_build' type="range" min="0" max="12" value="0" step='0.1'></td>
+            <td class='output' data-name='build_rate_target_in_second_build' data-format='.1f'></td>
+            <td>
+              GW/y
+            </td>
           </tr>
           <tr>
-            <td>Maximum drop in low carbon construction rate in a year:</td>
-            <td><input class='control' data-name='maximum_low_carbon_build_rate_contraction' type="range" min="0" max="1" value="1" step='0.05'></td>
-            <td class='output' data-name='maximum_low_carbon_build_rate_contraction' data-format='p'></td>
-            <td>0% = can't shrink, 50% = can halve in a year, 100% = can drop to zero in a year</td>
+            <td>Proportion of this build rate that is wind:</td>
+            <td><input class='control' data-name='proportion_of_second_build_that_is_wind' type="range" min="0" max="1" value="0.0" step='0.01'></td>
+            <td class='output' data-name='proportion_of_second_build_that_is_wind' data-format='p'></td>
+            <td>of build</td>
           </tr>
           <tr>
-            <td>Maximum increase in low carbon construction rate in a year:</td>
-            <td><input class='control' data-name='maximum_low_carbon_build_rate_expansion' type="range" min="0" max="1" value="0.5" step='0.05'></td>
-            <td class='output' data-name='maximum_low_carbon_build_rate_expansion' data-format='p'></td>
-            <td>Proportion of previous year's construction (0 means can't expand, 50% means can grow by half each year, 100% means can double in size each year)</td>
+            <td>Year in which widespread electrification of demand starts:</td>
+            <td><input class='control' data-name='year_electricity_demand_starts_to_increase' type="range" min="2015" max="2049" value="2020"></td>
+            <td class='output' data-name='year_electricity_demand_starts_to_increase' data-format='.0f'></td>
+            <td></td>
           </tr>
           <tr>
-            <td>Level of low carbon construction capacity that will always be available:</td>
-            <td><input class='control' data-name='minimum_low_carbon_build_rate' type="range" min="0" max="10" value="0.5" step='0.5'></td>
-            <td class='output' data-name='minimum_low_carbon_build_rate' data-format='.1f'></td>
-            <td>TWh/y (even if the industry has been completely collapsed, could still get this much in a year though imports or restarting the industr)</td>
-          </tr>
-          <tr>
-            <td>Proportion of electricity from renewable sources in 2020:</td>
-            <td><input class='control' data-name='renewable_electricity_in_2020' type="range" min="0" max="1" value="0.35" step='0.01'></td>
-            <td class='output' data-name='renewable_electricity_in_2020' data-format='p'></td>
-            <td>Proportion of electricity</td>
-          </tr>
-          <tr>
-            <td>Increase in nuclear power generation by 2020:</td>
-            <td><input class='control' data-name='nuclear_change_2012_2020' type="range" min="-59" max="20" value="10"></td>
-            <td class='output' data-name='nuclear_change_2012_2020' data-format='.0f'></td>
-            <td>TWh/y above today's level</td>
+            <td>Electricity demand in 2050:</td>
+            <td><input class='control' data-name='n_2050_electricity_demand' type="range" min="0" max="1000" value="600"></td>
+            <td class='output' data-name='n_2050_electricity_demand' data-format='.0f'></td>
+            <td>TWh/y</td>
           </tr>
           <tr>
             <td>Maximum electricity demand as a proportion of the demand:</td>
-            <td><input class='control' data-name='maxmean2050' type="range" min="0" max="5" value="2" step='0.5'></td>
-            <td class='output' data-name='maxmean2050' data-format='p'></td>
+            <td><input class='control' data-name='n_2050_maximum_electricity_demand' type="range" min="0" max="5" value="2" step='0.5'></td>
+            <td class='output' data-name='n_2050_maximum_electricity_demand' data-format='p'></td>
             <td>100% implies perfect energy storage. 200% means peak demand is twice mean demand'</td>
           </tr>
           <tr>
             <td>Minimum electricity demand as a proportion of the mean demand:</td>
-            <td><input class='control' data-name='minmean2050' type="range" min="0" max="1" value="0.5" step='0.1'></td>
-            <td class='output' data-name='minmean2050' data-format='p'></td>
+            <td><input class='control' data-name='n_2050_minimum_electricity_demand' type="range" min="0" max="1" value="0.5" step='0.1'></td>
+            <td class='output' data-name='n_2050_minimum_electricity_demand' data-format='p'></td>
             <td>100% implies perfect energy storage. 0% means electricity demand sometimes falls to zero. </td>
           </tr>
+          <tr>
+            <td>Emissions factor for fossil fuel generation in 2050:</td>
+            <td><input class='control' data-name='n_2050_fossil_fuel_emissions_factor' type="range" min="0" max="1000" value="350"></td>
+            <td class='output' data-name='n_2050_fossil_fuel_emissions_factor' data-format='.0f'></td>
+            <td>gCO2/kWh</td>
+          </tr>
+        </table>
+        <h2>Inputs relating to whole period</h2>
+        <table>
           <tr>
             <td>Annual change in non-electricity traded emissions:</td>
             <td><input class='control' data-name='annual_change_in_non_electricity_traded_emissions' type="range" min="-0.1" max="0.1" value="-0.03" step='0.01'></td>
             <td class='output' data-name='annual_change_in_non_electricity_traded_emissions' data-format='p'></td>
             <td>These are mainly industrial emissions.</td>
+          </tr>
+          <tr>
+            <td>Average lifespan of intermittent low carbon generation (i.e., wind):</td>
+            <td><input class='control' data-name='average_life_wind' type="range" min="0" max="60" value="30"></td>
+            <td class='output' data-name='average_life_wind' data-format='.0f'></td>
+            <td>Years</td>
+          </tr>
+          <tr>
+            <td>Average lifespan of other low carbon generation:</td>
+            <td><input class='control' data-name='average_life_other_low_carbon' type="range" min="0" max="60" value="30"></td>
+            <td class='output' data-name='average_life_other_low_carbon' data-format='.0f'></td>
+            <td>Years</td>
+          </tr>
+          <tr>
+            <td>Average lifespan of high carbon generation:</td>
+            <td><input class='control' data-name='average_life_high_carbon' type="range" min="0" max="60" value="30"></td>
+            <td class='output' data-name='average_life_high_carbon' data-format='.0f'></td>
+            <td>Years</td>
+          </tr>
+          <tr>
+            <td>Maximum drop in low carbon construction rate in a year:</td>
+            <td><input class='control' data-name='maximum_industry_contraction' type="range" min="0" max="1" value="1" step='0.05'></td>
+            <td class='output' data-name='maximum_industry_contraction' data-format='p'></td>
+            <td>0% = can't shrink, 50% = can halve in a year, 100% = can drop to zero in a year</td>
+          </tr>
+          <tr>
+            <td>Maximum increase in low carbon construction rate in a year:</td>
+            <td><input class='control' data-name='maximum_industry_expansion' type="range" min="0" max="1" value="0.5" step='0.05'></td>
+            <td class='output' data-name='maximum_industry_expansion' data-format='p'></td>
+            <td>Proportion of previous year's construction (0 means can't expand, 50% means can grow by half each year, 100% means can double in size each year)</td>
+          </tr>
+          <tr>
+            <td>Level of low carbon construction capacity that will always be available:</td>
+            <td><input class='control' data-name='minimum_build_rate' type="range" min="0" max="10" value="0.5" step='0.5'></td>
+            <td class='output' data-name='minimum_build_rate' data-format='.1f'></td>
+            <td>GW/y (even if the industry has been completely collapsed, could still get this much in a year though imports or restarting the industr)</td>
           </tr>
         </table>
       </form> 

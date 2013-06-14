@@ -71,6 +71,11 @@ h1 {
   stroke: red;
 }
 
+.line3 {
+  stroke: green;
+  stroke-dasharray: 5, 5;
+}
+
 #emissions .area0 {
   fill: red;
   fill-opacity: 1;

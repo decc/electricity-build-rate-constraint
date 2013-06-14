@@ -35,21 +35,25 @@ model_structure = extract_model_structure()
 # This should be identical to the one in src/javacripts/chart.js.coffee
 url_structure = [
   "version",
-  "maximum_low_carbon_build_rate",
-  "electrification_start_year",
-  "electricity_demand_in_2050",
-  "average_life_of_low_carbon_generation",
-  "renewable_electricity_in_2020",
-  "ccs_by_2020",
-  "nuclear_change_2012_2020" ,
-  "high_carbon_emissions_factor_2020", 
-  "high_carbon_emissions_factor_2050", 
-  "maximum_low_carbon_build_rate_contraction", 
-  "maximum_low_carbon_build_rate_expansion", 
-  "minimum_low_carbon_build_rate",
-  "maxmean2050", 
-  "minmean2050",
-  "annual_change_in_non_electricity_traded_emissions"
+  'build_rate_from_now_to_2020',
+  'proportion_of_build_rate_to_2020_that_is_wind_rest_is_bio',
+  'build_rate_target_in_second_build',
+  'proportion_of_second_build_that_is_wind',
+  'n_2012_onwards_electricity_demand_growth_rate',
+  'year_electricity_demand_starts_to_increase',
+  'n_2050_electricity_demand',
+  'n_2020_non_renewable_low_carbon_generation_i_e_nuclear_ccs',
+  'n_2050_fossil_fuel_emissions_factor',
+  'n_2050_maximum_electricity_demand',
+  'n_2050_minimum_electricity_demand',
+  'annual_change_in_non_electricity_traded_emissions',
+  'n_2020_fossil_fuel_emissions_factor',
+  'average_life_high_carbon',
+  'average_life_other_low_carbon',
+  'average_life_wind',
+  'maximum_industry_contraction',
+  'maximum_industry_expansion',
+  'minimum_build_rate'
 ] - ["version"] # A cludge to make the above lines easier to copy and paste
 
 # This is the method that is used to request data from the model
@@ -70,10 +74,11 @@ get '/data/1:*' do
     m.reset
     controls.each.with_index do |v,i|
       next unless v && v != ""
+      p url_structure[i] + ":" + v.to_s
       m.send(url_structure[i]+"=",v)
     end
     m.year_second_wave_of_building_starts = year
-    break if m.electricity_emissions_absolute_2050 < 10
+    break if m.n_2050_emissions_electricity < 10
     year = year - 1
   end
 

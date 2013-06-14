@@ -5,21 +5,25 @@ s =
 
 url_structure = [
   "version",
-  "maximum_low_carbon_build_rate",
-  "electrification_start_year",
-  "electricity_demand_in_2050",
-  "average_life_of_low_carbon_generation",
-  "renewable_electricity_in_2020",
-  "ccs_by_2020",
-  "nuclear_change_2012_2020" ,
-  "high_carbon_emissions_factor_2020",
-  "high_carbon_emissions_factor_2050",
-  "maximum_low_carbon_build_rate_contraction",
-  "maximum_low_carbon_build_rate_expansion",
-  "minimum_low_carbon_build_rate",
-  "maxmean2050",
-  "minmean2050",
-  "annual_change_in_non_electricity_traded_emissions"
+  'build_rate_from_now_to_2020',
+  'proportion_of_build_rate_to_2020_that_is_wind_rest_is_bio',
+  'build_rate_target_in_second_build',
+  'proportion_of_second_build_that_is_wind',
+  'n_2012_onwards_electricity_demand_growth_rate',
+  'year_electricity_demand_starts_to_increase',
+  'n_2050_electricity_demand',
+  'n_2020_non_renewable_low_carbon_generation_i_e_nuclear_ccs',
+  'n_2050_fossil_fuel_emissions_factor',
+  'n_2050_maximum_electricity_demand',
+  'n_2050_minimum_electricity_demand',
+  'annual_change_in_non_electricity_traded_emissions',
+  'n_2020_fossil_fuel_emissions_factor',
+  'average_life_high_carbon',
+  'average_life_other_low_carbon',
+  'average_life_wind',
+  'maximum_industry_contraction',
+  'maximum_industry_expansion',
+  'minimum_build_rate'
 ]
 
 update = () ->
@@ -291,7 +295,7 @@ visualise = () ->
     .datum(() -> @dataset)
     .text((d) -> d3.format(d.format)(data[d.name]))
 
-  if +data.electricity_emissions_absolute_2050 >= 10
+  if +data.n_2050_emissions_electricity >= 10
     d3.select('#emissions_warning')
       .transition(1000)
       .style("opacity",1)
@@ -301,19 +305,19 @@ visualise = () ->
       .style("opacity",0)
 
   d3.select('#build_rates')
-    .datum([data.zero_carbon_built, data.required_high_carbon_construction])
-    .call(timeSeriesChart().unit("TWh/yr/yr").max_value(100))
+    .datum([data.build_rate_total_low_carbon, data.build_rate_high_carbon])
+    .call(timeSeriesChart().unit("GW/yr").max_value(12))
 
   d3.select('#capacity')
-    .datum([ data.low_carbon_generation_capacity, data.high_carbon_generation_capacity ])
-    .call(timeSeriesStakedAreaChart().unit("TWh/yr").max_value(1500))
+    .datum([ data.capacity_total_low_carbon, data.capacity_high_carbon ])
+    .call(timeSeriesStakedAreaChart().unit("GW").max_value(150))
 
   d3.select('#load_factor')
-    .datum([data.low_carbon_load_factor, data.high_carbon_load_factor, data.mean_load_factor])
+    .datum([data.load_factor_dispatchable_low_carbon, data.load_factor_high_carbon, data.load_factor_demand, data.load_factor_intermittent_low_carbon])
     .call(timeSeriesChart().unit("").max_value(1))
 
   d3.select('#energy_output')
-    .datum([ data.zero_carbon, data.high_carbon ])
+    .datum([ data.energy_output_total_low_carbon, data.energy_output_high_carbon ])
     .call(timeSeriesStakedAreaChart().unit("TWh/yr").max_value(700))
 
   d3.select('#emissions_factor')
@@ -321,11 +325,11 @@ visualise = () ->
     .call(timeSeriesChart().unit("gCO2/kWh").max_value(500))
 
   d3.select('#emissions')
-    .datum([data.emissions, data.non_electricity_traded_sector_emissions])
+    .datum([data.emissions_electicity, data.emissions_non_electricity_traded])
     .call(timeSeriesStakedAreaChart().unit("MtCO2/yr").max_value(300))
 
   d3.select('#emissions')
-    .datum([data.uk_share_of_eu_ets_cap_current.slice(0,16), data.uk_share_of_eu_ets_cap_alternative.slice(0,16)])
+    .datum([data.emissions_uk_share_of_eu_ets_cap_current.slice(0,16), data.emissions_uk_share_of_eu_ets_cap_alternative.slice(0,16)])
     .call(timeSeriesChart().unit("MtCO2/yr").max_value(300))
 
   # Update the controls to defaults if required
