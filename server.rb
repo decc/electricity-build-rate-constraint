@@ -70,7 +70,7 @@ get '/data/1:*' do
   # If a parameter looks like a number, make it a number
   controls =  params[:splat][0].split(':').map { |v| v =~ /^-?\d+\.?\d*$/ ? v.to_f : v }
   year = 2050
-  while year >= 2010
+  while year >= 2020
     m.reset
     controls.each.with_index do |v,i|
       next unless v && v != ""
