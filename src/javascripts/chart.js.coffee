@@ -23,7 +23,14 @@ url_structure = [
   'average_life_wind',
   'maximum_industry_contraction',
   'maximum_industry_expansion',
-  'minimum_build_rate'
+  'minimum_build_rate',
+  'n_2030_cost_of_fossil_fuel',
+  'n_2050_cost_of_fossil_fuel',
+  'n_2030_cost_of_carbon',
+  'n_2050_cost_of_carbon',
+  'annual_reduction_in_cost_of_intermittent_generation',
+  'annual_reduction_in_cost_of_other_low_carbon_generation',
+  'annual_reduction_in_cost_of_high_carbon_generation'
 ]
 
 update = () ->
@@ -331,6 +338,11 @@ visualise = () ->
   d3.select('#emissions')
     .datum([data.emissions_uk_share_of_eu_ets_cap_current.slice(0,16), data.emissions_uk_share_of_eu_ets_cap_alternative.slice(0,16)])
     .call(timeSeriesChart().unit("MtCO2/yr").max_value(300))
+
+  d3.select('#electricitysystemcosts')
+    .datum([ data.total_costs_capital, data.total_costs_operating, data.total_costs_fuel, data.total_costs_carbon ])
+    .call(timeSeriesStakedAreaChart().unit("£bn").max_value(150))
+
 
   # Update the controls to defaults if required
   d3.selectAll('.control')

@@ -58,6 +58,22 @@ h1 {
   fill-opacity: 1;
 }
 
+.area1 {
+  fill: yellow;
+  fill-opacity: 1;
+}
+
+.area2 {
+  fill: grey;
+  fill-opacity: 1;
+}
+
+.area3 {
+  fill: black;
+  fill-opacity: 1;
+}
+
+
 .line0 {
   stroke: green;
 }

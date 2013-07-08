@@ -53,7 +53,14 @@ url_structure = [
   'average_life_wind',
   'maximum_industry_contraction',
   'maximum_industry_expansion',
-  'minimum_build_rate'
+  'minimum_build_rate',
+  'n_2030_cost_of_fossil_fuel',
+  'n_2050_cost_of_fossil_fuel',
+  'n_2030_cost_of_carbon',
+  'n_2050_cost_of_carbon',
+  'annual_reduction_in_cost_of_intermittent_generation',
+  'annual_reduction_in_cost_of_other_low_carbon_generation',
+  'annual_reduction_in_cost_of_high_carbon_generation'
 ] - ["version"] # A cludge to make the above lines easier to copy and paste
 
 # This is the method that is used to request data from the model
