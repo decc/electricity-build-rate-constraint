@@ -17,6 +17,8 @@ url_structure = [
   'n_2050_maximum_electricity_demand',
   'n_2050_minimum_electricity_demand',
   'annual_change_in_non_electricity_traded_emissions',
+  'annual_change_in_non_electricity_traded_emissions_after_radical_change',
+  'year_start_to_see_radical_change_in_non_traded_emissions',
   'n_2020_fossil_fuel_emissions_factor',
   'average_life_high_carbon',
   'average_life_other_low_carbon',

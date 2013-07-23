@@ -37,9 +37,9 @@ Only tested on OSX 10.8.3 so far.
 
 Written in a combination of Ruby and Coffeescript. 
 
-    electricity-build-rate-constraint.xlsx - The actual model of the electricity system that we are exploring
-    model.c - An computer-generated translation of the excel file into C
-    model.rb - A ruby interface to model.c
+    public/electricity-build-rate-constraint.xlsx - The actual model of the electricity system that we are exploring
+    model/model.c - An computer-generated translation of the excel file into C
+    model/model.rb - A ruby interface to model.c
     config.ru and server.rb - Serves 
       the data from model.rb
       public/index.html
@@ -49,13 +49,23 @@ Written in a combination of Ruby and Coffeescript.
 
 Fixes accepted, preferably using 'Fork&Pull' on github: <http://gun.io/blog/how-to-github-fork-branch-and-pull-request/>
 
+### Updating the model
+
+If you have changed the excel spreadsheet then run the following in this directory:
+
+    rake clean
+    rake
+
+You will need to restart the server ``powder restart`` and potentially clear your browser's cache to see the results.
+
+
 ## The parallel demo
 
 This is a bit experimental.
 
 Steps: 
 
-    bundle exec ruby montecarlo.rb > public/runs.csv
+    bundle exec ruby util/montecarlo.rb > public/runs.csv
     powder open
     go to /parallel.html in your browser
 

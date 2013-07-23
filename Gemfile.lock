@@ -1,22 +1,18 @@
-GIT
-  remote: ../excel_to_code
-  revision: 50ceee34c481c2af899e5e69fb49dce47a9a653a
-  branch: master
-  specs:
-    excel_to_code (0.1.9)
-      ffi (>= 1.0.11)
-      nokogiri (>= 1.5.0)
-      rspec (>= 2.7.0)
-      rubypeg
-
 GEM
   remote: https://rubygems.org/
   specs:
     diff-lcs (1.2.4)
-    ffi (1.8.1)
+    excel_to_code (0.1.11)
+      ffi (>= 1.0.11)
+      nokogiri (>= 1.5.0)
+      rspec (>= 2.7.0)
+      rubypeg
+    ffi (1.9.0)
     json (1.7.7)
+    mini_portile (0.5.0)
     minitest (4.7.4)
-    nokogiri (1.5.9)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
@@ -41,7 +37,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  excel_to_code!
+  excel_to_code
   json
   minitest
   sinatra
