@@ -4,9 +4,6 @@ electricity-build-rate-constraint/
 *.dylib
 *.dylib.powenv
 ~$electricity-build-rate-constraint.xlsx
-model.c
 test_model.rb
-model.rb
-model.o
 tmp/always_restart.txt
 tmp/restart.txt
