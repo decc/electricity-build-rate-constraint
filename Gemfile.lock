@@ -38,6 +38,7 @@ PLATFORMS
 
 DEPENDENCIES
   excel_to_code
+  ffi
   json
   minitest
   sinatra
