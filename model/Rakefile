@@ -7,9 +7,9 @@ COMPILE_FLAGS = "-fPIC"
 SHARED_LIBRARY_FLAGS = "-shared -fPIC"
 
 OUTPUT = FFI.map_library_name "model"
-OUTPUT_DIR = "."
-SOURCE = "model.c"
-OBJECT = "model.o"
+OUTPUT_DIR = this_directory
+SOURCE = File.join(this_directory, "model.c")
+OBJECT = File.join(this_directory, "model.o")
 
 task :default => [:build]
 
