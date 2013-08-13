@@ -8,6 +8,8 @@ GEM
       rspec (>= 2.7.0)
       rubypeg
     ffi (1.9.0)
+    haml (4.0.3)
+      tilt
     json (1.7.7)
     mini_portile (0.5.0)
     minitest (4.7.4)
@@ -39,6 +41,7 @@ PLATFORMS
 DEPENDENCIES
   excel_to_code
   ffi
+  haml
   json
   minitest
   sinatra
