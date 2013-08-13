@@ -1,5 +1,8 @@
 # encoding: utf8
 require './server'
+
+ENV['RACK_ENV'] = ENV['RAILS_ENV'] if ENV['RAILS_ENV']
+
 if ENV['RAILS_ENV'] == 'development'
   map '/assets' do
     require 'sprockets'

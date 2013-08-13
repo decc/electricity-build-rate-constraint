@@ -1,0 +1,309 @@
+%html
+  = stylesheet
+  %body
+    %h1 Low carbon electricity ready reckoner
+    %p
+      Tries to show a scenario for the electricity sector that has 2050 emissions from electricity below 10 MtCO
+      %sub 2
+      in 2050 given the following assumptions. Please note it is ALPHA and is currently not to be trusted.
+    %p#emissions_warning
+      Warning: cannot get 2050 electricity emissions below 10 MtCO
+      %sub 2
+      given these assumptions. Try increasing the maximum low carbon build rate after 2020.
+    #outputs
+      %h2 Outputs
+      %table
+        %tr
+          %td NPV of 2012-2050 costs
+          %td
+            \&pound;
+            %span.output{"data-format" => ".0f", "data-name" => "total_system_cost"}>
+            bn
+        %tr
+          %td Renewable electricity in 2020
+          %td
+            %span.output{"data-format" => ".0f", "data-name" => "n_2020_renewables_target_twh"}
+            TWh (
+            %span.output{"data-format" => ".2p", "data-name" => "n_2020_renewables_target"}>
+            )
+        %tr
+          %td Emissions during CB2
+          %td
+            %span.output{"data-format" => ".0f", "data-name" => "cb2_scenario"}
+            MtCO
+            %sub 2
+            (
+            %span.output{"data-format" => ".1f", "data-name" => "cb2_net_ets_purchase"}>
+            )
+        %tr
+          %td Emissions during CB3
+          %td
+            %span.output{"data-format" => ".0f", "data-name" => "cb3_scenario"}
+            MtCO
+            %sub 2
+            (
+            %span.output{"data-format" => ".1f", "data-name" => "cb3_net_ets_purchase"}>
+            )
+        %tr
+          %td Emissions during current CB4
+          %td
+            %span.output{"data-format" => ".0f", "data-name" => "cb4_current_scenario"}
+            MtCO
+            %sub 2
+            (
+            %span.output{"data-format" => ".1f", "data-name" => "cb4_current_net_ets_purchase"}>
+            )
+        %tr
+          %td Emissions during increased CB4
+          %td
+            %span.output{"data-format" => ".0f", "data-name" => "cb4_revised_scenario"}
+            MtCO
+            %sub 2
+            (
+            %span.output{"data-format" => ".1f", "data-name" => "cb4_revised_net_ets_purchase"}>
+            )
+        %tr
+          %td Grid intensity 2020
+          %td
+            %span.output{"data-format" => ".0f", "data-name" => "n_2020_renewables_target_gco2_kwh"}
+            gCO2/kWh
+        %tr
+          %td Grid intensity 2030
+          %td
+            %span.output{"data-format" => ".0f", "data-name" => "n_2030_decarbonisation_level"}
+            gCO2/kWh
+      #charts
+        #build_rates
+          %h2 Build rate
+          .chart
+        #capacity
+          %h2 Capacity
+          .chart
+        #load_factor
+          %h2 Load Factor
+          .chart
+        #energy_output
+          %h2 Energy output
+          .chart
+        #emissions_factor
+          %h2 Emissions factor
+          .chart
+        #emissions
+          %h2 Emissions
+          .chart
+        #electricitysystemcosts
+          %h2 Electricity System Costs
+          .chart
+    #inputs
+      %form
+        %h2 Inputs relating to 2012-2020
+        %table
+          %tr
+            %td Low carbon build rate from now to 2020:
+            %td
+              %input.control{"data-name" => "build_rate_from_now_to_2020", :max => "12", :min => "0", :step => "0.1", :type => "range", :value => "1"}/
+            %td.output{"data-format" => ".1f", "data-name" => "build_rate_from_now_to_2020"}
+            %td GW/y
+          %tr
+            %td Proportion of this build rate that is wind:
+            %td
+              %input.control{"data-name" => "proportion_of_build_rate_to_2020_that_is_wind_rest_is_bio", :max => "1", :min => "0", :step => "0.01", :type => "range", :value => "0.0"}/
+            %td.output{"data-format" => "p", "data-name" => "proportion_of_build_rate_to_2020_that_is_wind_rest_is_bio"}
+            %td of build
+          %tr
+            %td Non-renewable low carbon generation in 2020 (i.e., nuclear, CCS)
+            %td
+              %input.control{"data-name" => "n_2020_non_renewable_low_carbon_generation_i_e_nuclear_ccs", :max => "10", :min => "0", :type => "range", :value => "5"}/
+            %td.output{"data-format" => ".0f", "data-name" => "n_2020_non_renewable_low_carbon_generation_i_e_nuclear_ccs"}
+            %td GW
+          %tr
+            %td Emissions factor for fossil fuel generation in 2020:
+            %td
+              %input.control{"data-name" => "n_2020_fossil_fuel_emissions_factor", :max => "1000", :min => "0", :type => "range", :value => "370"}/
+            %td.output{"data-format" => ".0f", "data-name" => "n_2020_fossil_fuel_emissions_factor"}
+            %td gCO2/kWh
+          %tr
+            %td Annual change in electricity demand:
+            %td
+              %input.control{"data-name" => "n_2012_onwards_electricity_demand_growth_rate", :max => "0.1", :min => "-0.1", :step => "0.005", :type => "range", :value => "0.0"}/
+            %td.output{"data-format" => "p", "data-name" => "n_2012_onwards_electricity_demand_growth_rate"}
+            %td until widespread electrification of demand starts (see below)
+        %h2 Inputs relating to 2020-2050
+        %table
+          %tr
+            %td Target low carbon build rate:
+            %td
+              %input.control{"data-name" => "build_rate_target_in_second_build", :max => "12", :min => "0", :step => "0.1", :type => "range", :value => "0"}/
+            %td.output{"data-format" => ".1f", "data-name" => "build_rate_target_in_second_build"}
+            %td
+              GW/y
+          %tr
+            %td Proportion of this build rate that is wind:
+            %td
+              %input.control{"data-name" => "proportion_of_second_build_that_is_wind", :max => "1", :min => "0", :step => "0.01", :type => "range", :value => "0.0"}/
+            %td.output{"data-format" => "p", "data-name" => "proportion_of_second_build_that_is_wind"}
+            %td of build
+          %tr
+            %td Year in which widespread electrification of demand starts:
+            %td
+              %input.control{"data-name" => "year_electricity_demand_starts_to_increase", :max => "2049", :min => "2015", :type => "range", :value => "2020"}/
+            %td.output{"data-format" => ".0f", "data-name" => "year_electricity_demand_starts_to_increase"}
+            %td
+          %tr
+            %td Electricity demand in 2050:
+            %td
+              %input.control{"data-name" => "n_2050_electricity_demand", :max => "1000", :min => "0", :type => "range", :value => "600"}/
+            %td.output{"data-format" => ".0f", "data-name" => "n_2050_electricity_demand"}
+            %td TWh/y
+          %tr
+            %td Maximum electricity demand as a proportion of the demand:
+            %td
+              %input.control{"data-name" => "n_2050_maximum_electricity_demand", :max => "5", :min => "0", :step => "0.5", :type => "range", :value => "2"}/
+            %td.output{"data-format" => "p", "data-name" => "n_2050_maximum_electricity_demand"}
+            %td 100% implies perfect energy storage. 200% means peak demand is twice mean demand'
+          %tr
+            %td Minimum electricity demand as a proportion of the mean demand:
+            %td
+              %input.control{"data-name" => "n_2050_minimum_electricity_demand", :max => "1", :min => "0", :step => "0.1", :type => "range", :value => "0.5"}/
+            %td.output{"data-format" => "p", "data-name" => "n_2050_minimum_electricity_demand"}
+            %td 100% implies perfect energy storage. 0% means electricity demand sometimes falls to zero.
+          %tr
+            %td Emissions factor for fossil fuel generation in 2050:
+            %td
+              %input.control{"data-name" => "n_2050_fossil_fuel_emissions_factor", :max => "1000", :min => "0", :type => "range", :value => "350"}/
+            %td.output{"data-format" => ".0f", "data-name" => "n_2050_fossil_fuel_emissions_factor"}
+            %td gCO2/kWh
+          %tr
+            %td Cost of fossil fuel in 2030:
+            %td
+              %input.control{"data-name" => "n_2030_cost_of_fossil_fuel", :max => "100", :min => "0", :step => "1", :type => "range", :value => "30"}/
+            %td.output{"data-format" => ".0f", "data-name" => "n_2030_cost_of_fossil_fuel"}
+            %td &pound;/MWh
+          %tr
+            %td Cost of fossil fuel in 2050:
+            %td
+              %input.control{"data-name" => "n_2050_cost_of_fossil_fuel", :max => "100", :min => "0", :step => "1", :type => "range", :value => "30"}/
+            %td.output{"data-format" => ".0f", "data-name" => "n_2050_cost_of_fossil_fuel"}
+            %td &pound;/MWh
+          %tr
+            %td Cost of carbon in 2030:
+            %td
+              %input.control{"data-name" => "n_2030_cost_of_carbon", :max => "300", :min => "0", :step => "1", :type => "range", :value => "30"}/
+            %td.output{"data-format" => ".0f", "data-name" => "n_2030_cost_of_carbon"}
+            %td
+              \&pound;/tCO
+              %sub 2
+          %tr
+            %td Cost of carbon in 2050:
+            %td
+              %input.control{"data-name" => "n_2050_cost_of_carbon", :max => "300", :min => "0", :step => "1", :type => "range", :value => "30"}/
+            %td.output{"data-format" => ".0f", "data-name" => "n_2050_cost_of_carbon"}
+            %td
+              \&pound;/tCO
+              %sub 2
+        %h2 Inputs relating to whole period
+        %table
+          %tr
+            %td Trend in non-electricity traded emissions from today:
+            %td
+              %input.control{"data-name" => "annual_change_in_non_electricity_traded_emissions", :max => "0.1", :min => "-0.1", :step => "0.01", :type => "range", :value => "-0.03"}/
+            %td.output{"data-format" => "p", "data-name" => "annual_change_in_non_electricity_traded_emissions"}
+            %td These are mainly industrial emissions.
+          %tr
+            %td Year start to see radical change in non-electricity traded emissions
+            %td
+              %input.control{"data-name" => "year_start_to_see_radical_change_in_non_traded_emissions", :max => "2049", :min => "2015", :type => "range", :value => "2020"}/
+            %td.output{"data-format" => ".0f", "data-name" => "year_start_to_see_radical_change_in_non_traded_emissions"}
+            %td .
+          %tr
+            %td Trend in non-electricity traded emissions after radical changes start:
+            %td
+              %input.control{"data-name" => "annual_change_in_non_electricity_traded_emissions_after_radical_change", :max => "0.1", :min => "-0.1", :step => "0.01", :type => "range", :value => "-0.03"}/
+            %td.output{"data-format" => "p", "data-name" => "annual_change_in_non_electricity_traded_emissions_after_radical_change"}
+            %td These are mainly industrial emissions.
+          %tr
+            %td Average lifespan of intermittent low carbon generation (i.e., wind):
+            %td
+              %input.control{"data-name" => "average_life_wind", :max => "60", :min => "0", :type => "range", :value => "30"}/
+            %td.output{"data-format" => ".0f", "data-name" => "average_life_wind"}
+            %td Years
+          %tr
+            %td Average lifespan of other low carbon generation:
+            %td
+              %input.control{"data-name" => "average_life_other_low_carbon", :max => "60", :min => "0", :type => "range", :value => "30"}/
+            %td.output{"data-format" => ".0f", "data-name" => "average_life_other_low_carbon"}
+            %td Years
+          %tr
+            %td Average lifespan of high carbon generation:
+            %td
+              %input.control{"data-name" => "average_life_high_carbon", :max => "60", :min => "0", :type => "range", :value => "30"}/
+            %td.output{"data-format" => ".0f", "data-name" => "average_life_high_carbon"}
+            %td Years
+          %tr
+            %td Maximum drop in low carbon construction rate in a year:
+            %td
+              %input.control{"data-name" => "maximum_industry_contraction", :max => "1", :min => "0", :step => "0.05", :type => "range", :value => "1"}/
+            %td.output{"data-format" => "p", "data-name" => "maximum_industry_contraction"}
+            %td 0% = can't shrink, 50% = can halve in a year, 100% = can drop to zero in a year
+          %tr
+            %td Maximum increase in low carbon construction rate in a year:
+            %td
+              %input.control{"data-name" => "maximum_industry_expansion", :max => "1", :min => "0", :step => "0.05", :type => "range", :value => "0.5"}/
+            %td.output{"data-format" => "p", "data-name" => "maximum_industry_expansion"}
+            %td Proportion of previous year's construction (0 means can't expand, 50% means can grow by half each year, 100% means can double in size each year)
+          %tr
+            %td Level of low carbon construction capacity that will always be available:
+            %td
+              %input.control{"data-name" => "minimum_build_rate", :max => "10", :min => "0", :step => "0.5", :type => "range", :value => "0.5"}/
+            %td.output{"data-format" => ".1f", "data-name" => "minimum_build_rate"}
+            %td GW/y (even if the industry has been completely collapsed, could still get this much in a year though imports or restarting the industr)
+          %tr
+            %td Annual reduction in the cost of intermittent generation:
+            %td
+              %input.control{"data-name" => "annual_reduction_in_cost_of_intermittent_generation", :max => "1", :min => "0", :step => "0.01", :type => "range", :value => "1"}/
+            %td.output{"data-format" => "p", "data-name" => "annual_reduction_in_cost_of_intermittent_generation"}
+            %td
+          %tr
+            %td Annual reduction in the cost of other low carbon generation:
+            %td
+              %input.control{"data-name" => "annual_reduction_in_cost_of_other_low_carbon_generation", :max => "1", :min => "0", :step => "0.01", :type => "range", :value => "1"}/
+            %td.output{"data-format" => "p", "data-name" => "annual_reduction_in_cost_of_other_low_carbon_generation"}
+            %td
+          %tr
+            %td Annual reduction in the cost of high carbon generation:
+            %td
+              %input.control{"data-name" => "annual_reduction_in_cost_of_high_carbon_generation", :max => "1", :min => "0", :step => "0.01", :type => "range", :value => "1"}/
+            %td.output{"data-format" => "p", "data-name" => "annual_reduction_in_cost_of_high_carbon_generation"}
+            %td
+    #refs
+      %p
+        This is based on a
+        = succeed ".Please" do
+          %a{:href => "/electricity-build-rate-constraint.xlsx"} very simple one sheet excel model
+        download source, report bugs and propose changes at
+        = succeed "." do
+          %a{:href => "http://github.com/decc/electricity-build-rate-constraint"} http://github.com/decc/electricity-build-rate-constraint
+      %h3 Open source: The MIT License (MIT)
+      %p
+        \&copy; 2013
+        = succeed "." do
+          %a{:href => "http://tom.counsell.org"} Tom Counsell
+      %p
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+      %p
+        The above copyright notice and this permission notice shall be included in
+        all copies or substantial portions of the Software.
+      %p
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+        THE SOFTWARE.
+    = javascript

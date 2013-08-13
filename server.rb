@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'json'
+require 'haml'
 require_relative 'model/model'
 
 # We want to be able to work out which methods are unique to our Model
@@ -102,6 +103,17 @@ get '/data/1:*' do
 end
 
 # The root url. Just returns index.html at the moment
-get '*' do
-  send_file 'public/index.html'
+if development?
+  require_relative 'src/helper'
+
+  helpers Helper
+  set :views, File.join(settings.root, 'src')
+
+  get '*' do
+    haml :'index.html'
+  end
+else
+  get '*' do 
+    send_file 'public/index.html'
+  end
 end

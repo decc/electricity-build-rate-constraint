@@ -7,3 +7,8 @@ electricity-build-rate-constraint/
 test_model.rb
 tmp/always_restart.txt
 tmp/restart.txt
+.powenv
+
+*.so
+
+.powenv
