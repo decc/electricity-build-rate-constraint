@@ -36,8 +36,7 @@ url_structure = [
 ]
 
 update = () ->
-  if request?
-    request.abort()
+  return false if dataIsUpToDate()
 
   request = d3.json("/data#{urlForSettings()}", (error, json) ->
     return console.warn(error) if error
@@ -69,8 +68,8 @@ getSettingsFromUrl = () ->
     if c[i]? and c[i] != ""
       s[a] = c[i]
 
-window.dataIsUpToDate = () ->
-  window.location.pathname == data.id
+dataIsUpToDate = () ->
+  urlForSettings() == data.id
 
 timeSeriesChart = ->
   
@@ -354,20 +353,11 @@ visualise = () ->
     .filter( (d) -> not s[d.name]? )
     .property('value', (d) -> data[d.name])
 
-d3.selectAll('.control')
-  .datum(() -> @dataset)
-  .on('change', (d) ->
-    # console.log d.name, this.value
-    s[d.name] = +this.value
-    update()
-  )
-
 d3.selectAll('.preset')
   .datum(() -> @dataset)
   .on('click', (d) ->
     s[d.name] = +d.value
     updateControlsFromSettings()
-    update()
   )
 
 drag = undefined
@@ -407,7 +397,6 @@ dragmove = () ->
   d.attr('value', current_value)
   d.text(drag.format(current_value))
   s[drag.variable_name] = current_value
-  update()
 
 dragend = (d) ->
   d = d3.select(@)
@@ -433,4 +422,4 @@ updateControlsFromSettings = () ->
 
 getSettingsFromUrl()
 updateControlsFromSettings()
-update()
+setInterval(update, 300)
