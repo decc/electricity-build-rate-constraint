@@ -37,7 +37,6 @@ url_structure = [
 
 update = () ->
   if request?
-    setUrlToMatchSettings()
     request.abort()
 
   request = d3.json("/data#{urlForSettings()}", (error, json) ->
@@ -415,6 +414,7 @@ dragend = (d) ->
   d.classed('dragging', false)
   d3.select('body').classed('dragging_in_progress', false)
   drag = undefined
+  setUrlToMatchSettings()
 
 dragbehaviour = d3.behavior.drag()
   .on("dragstart", dragstart)
