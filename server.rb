@@ -84,7 +84,6 @@ get '/data/1:*' do
     m.reset
     controls.each.with_index do |v,i|
       next unless v && v != ""
-      p url_structure[i] + ":" + v.to_s
       m.send(url_structure[i]+"=",v)
     end
     m.year_second_wave_of_building_starts = year

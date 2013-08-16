@@ -302,16 +302,15 @@ visualise = () ->
 
   d3.selectAll('.output')
     .datum(() -> @dataset)
+    .attr('value', (d) -> data[d.name])
     .text((d) -> d3.format(d.format)(data[d.name]))
 
   if +data.n_2050_emissions_electricity >= 10
     d3.select('#emissions_warning')
-      .transition(1000)
-      .style("opacity",1)
+      .classed("warn", false)
   else
     d3.select('#emissions_warning')
-      .transition(1000)
-      .style("opacity",0)
+      .classed("warn", true)
 
   d3.select('#build_rates')
     .datum([data.build_rate_total_low_carbon, data.build_rate_high_carbon])
@@ -367,6 +366,60 @@ d3.selectAll('.preset')
     updateControlsFromSettings()
     update()
   )
+
+drag = undefined
+
+dragstart = () ->
+  d = d3.select(@)
+  
+  d.classed('dragging', true)
+  d3.select('body').classed('dragging_in_progress', true)
+
+  original_value = +d.attr('value')
+
+  step = +d.attr('step') || 1
+  max = +d.attr('max') || Number.POSITIVE_INFINITY
+  min = if d.attr('min')? then +d.attr('min') else Number.NEGATIVE_INFINITY
+
+  scale = (x) ->
+    unrounded_value = original_value + (x * step * Math.pow(10,Math.abs(x)/100) / 20)
+    # Inserted the multiply then divide by 1000 to remove floating point rounding when step is 0.001
+    # which is quite a frequent case for 0.1% changes
+    rounded_to_step = (Math.round(unrounded_value/step)*1000*step)/1000
+    clamped_value = Math.min(max, Math.max(min, rounded_to_step))
+    clamped_value
+
+  format = if d.attr('data-format')? then d3.format(d.attr('data-format')) else Object
+
+  drag =
+    starting_x: undefined
+    variable_name: d.attr('data-name')
+    scale: scale
+    format: format
+
+dragmove = () ->
+  d = d3.select(@)
+  drag.starting_x = d3.event.x unless drag.starting_x?
+  current_value = drag.scale(d3.event.x - drag.starting_x)
+  d.attr('value', current_value)
+  d.text(drag.format(current_value))
+  s[drag.variable_name] = current_value
+  update()
+
+dragend = (d) ->
+  d = d3.select(@)
+  d.classed('dragging', false)
+  d3.select('body').classed('dragging_in_progress', false)
+  drag = undefined
+
+dragbehaviour = d3.behavior.drag()
+  .on("dragstart", dragstart)
+  .on("drag", dragmove)
+  .on("dragend", dragend)
+
+d3.selectAll('.draggable')
+  .datum(() -> d3.select(@))
+  .call(dragbehaviour)
 
 updateControlsFromSettings = () ->
   d3.selectAll('.control')

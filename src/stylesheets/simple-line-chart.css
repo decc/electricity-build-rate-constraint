@@ -1,27 +1,26 @@
 body {
-  font: 10px sans-serif;
+  padding: 0 10px;
+  font: 10pt sans-serif;
 }
 
-#inputs, #outputs {
-  width: 50%;
+#inputs {
+  width: 60%;
 }
+
 
 #outputs {
+  width: 40%;
   text-align: center;
   float: right;
 }
 
-#outputs table {
-  margin-left: auto;
-  margin-right: auto;
-}
 
-td {
-  font: 10px sans-serif;
-}
-
-h1 {
+h1, h2 {
 	margin-bottom: 0;
+}
+
+p {
+  margin-top: 0;
 }
 
 #charts div {
@@ -115,6 +114,10 @@ td.output {
   background-color: yellow;
 }
 
+.warn {
+  display: none;
+}
+
 .preset {
   text-decoration: underline;
   color: blue;
@@ -124,3 +127,24 @@ td.output {
 #refs {
   clear:both;
 }
+
+.draggable {
+	position:relative;
+	color: #46f;
+	border-bottom: 1px dashed #46f;
+}  
+
+.dragging {
+  color: #00c;
+  border-bottom: 1px dashed #00c;
+}
+
+body.dragging_in_progress {
+	cursor: pointer;
+	cursor: move;
+	cursor: col-resize;
+}
+
+.output {
+  background-color: #FFFDCC;
+}  
