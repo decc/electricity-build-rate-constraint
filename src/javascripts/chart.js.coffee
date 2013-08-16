@@ -39,6 +39,7 @@ update = () ->
   if request?
     setUrlToMatchSettings()
     request.abort()
+
   request = d3.json("/data#{urlForSettings()}", (error, json) ->
     return console.warn(error) if error
     data = json
@@ -68,6 +69,9 @@ getSettingsFromUrl = () ->
   for a,i in url_structure
     if c[i]? and c[i] != ""
       s[a] = c[i]
+
+window.dataIsUpToDate = () ->
+  window.location.pathname == data.id
 
 timeSeriesChart = ->
   

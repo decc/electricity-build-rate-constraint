@@ -97,6 +97,7 @@ get '/data/1:*' do
     r.flatten! if r.is_a?(Array) && r.length == 1
     result[method] = r
   end
+  result[:id] = "/1:"+params[:splat][0]
 
   result.to_json
 end
