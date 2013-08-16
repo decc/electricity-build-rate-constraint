@@ -1,0 +1,157 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+
+
+*/
+body {
+  padding: 0 10px;
+  font: 10pt sans-serif;
+}
+
+#inputs {
+  width: 60%;
+}
+
+
+#outputs {
+  width: 40%;
+  text-align: center;
+  float: right;
+}
+
+
+h1, h2 {
+	margin-bottom: 0;
+}
+
+p {
+  margin-top: 0;
+}
+
+#charts div {
+  display: inline-block;
+}
+
+#charts div h2 {
+  text-align: center;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.axislabel {
+  text-anchor: end;
+}
+
+.line {
+  fill: none;
+  stroke: black;
+  stroke-width: 3px;
+}
+
+.area {
+  fill: steelblue;
+  fill-opacity: 0.1;
+}
+
+.area0 {
+  fill: green;
+  fill-opacity: 1;
+}
+
+.area1 {
+  fill: yellow;
+  fill-opacity: 1;
+}
+
+.area2 {
+  fill: grey;
+  fill-opacity: 1;
+}
+
+.area3 {
+  fill: black;
+  fill-opacity: 1;
+}
+
+
+.line0 {
+  stroke: green;
+}
+
+.area1 {
+  fill: red;
+  fill-opacity: 1;
+}
+
+.line1 {
+  stroke: red;
+}
+
+.line3 {
+  stroke: green;
+  stroke-dasharray: 5, 5;
+}
+
+#emissions .area0 {
+  fill: red;
+  fill-opacity: 1;
+}
+
+#emissions .area1 {
+  fill: grey;
+  fill-opacity: 0.5;
+}
+
+#emissions .line {
+  stroke-width: 1px;
+  stroke: black;
+}
+
+td.output {
+  text-align: right;
+}
+
+#emissions_warning {
+  background-color: yellow;
+}
+
+.warn {
+  display: none;
+}
+
+.preset {
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}
+
+#refs {
+  clear:both;
+}
+
+.draggable {
+	position:relative;
+	color: #46f;
+	border-bottom: 1px dashed #46f;
+}  
+
+.dragging {
+  color: #00c;
+  border-bottom: 1px dashed #00c;
+}
+
+body.dragging_in_progress {
+	cursor: pointer;
+	cursor: move;
+	cursor: col-resize;
+}
+
+.output {
+  background-color: #FFFDCC;
+}  
