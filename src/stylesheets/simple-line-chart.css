@@ -1,6 +1,15 @@
 body {
   padding: 0 10px;
-  font: 10pt sans-serif;
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 15px;
+  color: rgb(51, 51, 51);
+  line-height: 25px;
+}
+
+#container {
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #inputs {
@@ -9,18 +18,27 @@ body {
 
 
 #outputs {
+  margin-top: 67px;
   width: 40%;
   text-align: center;
   float: right;
 }
 
 
-h1, h2 {
+h1 {
+  font-size: 30px;
 	margin-bottom: 0;
 }
 
+h2 {
+  font-size: 15px;
+  border-bottom: 1px solid #eee;
+}
+
 p {
-  margin-top: 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 100%;
 }
 
 #charts div {
@@ -148,3 +166,15 @@ body.dragging_in_progress {
 .output {
   background-color: #FFFDCC;
 }  
+
+svg text {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 12px;
+  fill: rgb(51, 51, 51);
+  line-height: 25px;
+}
+
+#inputs b {
+  font-weight: normal;
+  color: black;
+}
