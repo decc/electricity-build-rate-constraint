@@ -1,0 +1,186 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+
+
+*/
+body {
+  padding: 0 10px;
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 15px;
+  color: rgb(51, 51, 51);
+  line-height: 25px;
+}
+
+#container {
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#inputs {
+  width: 60%;
+}
+
+
+#outputs {
+  margin-top: 67px;
+  width: 40%;
+  text-align: center;
+  float: right;
+}
+
+
+h1 {
+  font-size: 30px;
+	margin-bottom: 0;
+}
+
+h2 {
+  font-size: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+p {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 100%;
+}
+
+#charts div {
+  display: inline-block;
+}
+
+#charts div h2 {
+  text-align: center;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.axislabel {
+  text-anchor: end;
+}
+
+.line {
+  fill: none;
+  stroke: black;
+  stroke-width: 3px;
+}
+
+.linelabel {
+  font-size: 10px;
+}
+
+.area {
+  fill: steelblue;
+  fill-opacity: 0.1;
+}
+
+.area0, .linelabel0 {
+  fill: green;
+  fill-opacity: 1;
+}
+
+.area1, .linelabel1 {
+  fill: red;
+  fill-opacity: 1;
+}
+
+.area2, .linelabel2 {
+  fill: grey;
+  fill-opacity: 1;
+}
+
+.area3, .linelabel3 {
+  fill: black;
+  fill-opacity: 1;
+}
+
+.line0 {
+  stroke: green;
+}
+
+
+.line1 {
+  stroke: red;
+}
+
+.line3 {
+  stroke: green;
+  stroke-dasharray: 5, 5;
+}
+
+#emissions .area0 {
+  fill: red;
+  fill-opacity: 1;
+}
+
+#emissions .area1 {
+  fill: grey;
+  fill-opacity: 0.5;
+}
+
+#emissions .line {
+  stroke-width: 1px;
+  stroke: black;
+}
+
+td.output {
+  text-align: right;
+}
+
+#emissions_warning {
+  background-color: yellow;
+}
+
+.warn {
+  display: none;
+}
+
+.preset {
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}
+
+#refs {
+  clear:both;
+}
+
+.draggable {
+	position:relative;
+	color: #46f;
+	border-bottom: 1px dashed #46f;
+}  
+
+.dragging {
+  color: #00c;
+  border-bottom: 1px dashed #00c;
+}
+
+body.dragging_in_progress {
+	cursor: pointer;
+	cursor: move;
+	cursor: col-resize;
+}
+
+.output {
+  background-color: #FFFDCC;
+}  
+
+svg text {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 12px;
+  fill: rgb(51, 51, 51);
+  line-height: 25px;
+}
+
+#inputs b {
+  font-weight: normal;
+  color: black;
+}
