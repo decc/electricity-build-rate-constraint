@@ -70,35 +70,30 @@ p {
   fill-opacity: 0.1;
 }
 
-.area0 {
+.area0, .linelabel0 {
   fill: green;
   fill-opacity: 1;
 }
 
-.area1 {
-  fill: yellow;
+.area1, .linelabel1 {
+  fill: red;
   fill-opacity: 1;
 }
 
-.area2 {
+.area2, .linelabel2 {
   fill: grey;
   fill-opacity: 1;
 }
 
-.area3 {
+.area3, .linelabel3 {
   fill: black;
   fill-opacity: 1;
 }
-
 
 .line0 {
   stroke: green;
 }
 
-.area1 {
-  fill: red;
-  fill-opacity: 1;
-}
 
 .line1 {
   stroke: red;

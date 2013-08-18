@@ -75,11 +75,11 @@ timeSeriesChart = ->
   
   margin =
     top: 20
-    right: 20
+    right: 115
     bottom: 20
-    left: 50
+    left: 65
 
-  width = 250
+  width = 375
   height = 125
 
   unit = "TWh/yr"
@@ -101,6 +101,8 @@ timeSeriesChart = ->
   line = d3.svg.line()
     .x((d,i) -> xScale(new Date("#{first_data_year+i}")))
     .y((d,i) -> yScale(+d))
+
+  linelabels = []
 
   chart = (selection) ->
     selection.each (data) ->
@@ -170,6 +172,20 @@ timeSeriesChart = ->
       lines.transition()
         .attr("d", line)
 
+      # Update the line labels
+      labels = g.selectAll(".linelabel")
+        .data(Object)
+
+      labels.enter()
+        .append("text")
+        .attr("class", (d,i) -> "linelabel linelabel#{i}")
+        .attr("transform", "translate(" + (xScale.range()[1]) + ",0)")
+        .text((d,i) -> linelabels[i])
+
+      labels.transition()
+        .attr("transform", (d,i) -> "translate(" + (xScale.range()[1]) + ","+yScale(d[d.length-1])+")")
+
+
   chart.unit = (_) ->
     return unit unless _?
     unit = _
@@ -178,6 +194,11 @@ timeSeriesChart = ->
   chart.max_value = (_) ->
     return max_value unless _?
     max_value = _
+    chart
+
+  chart.linelabels = (_) ->
+    return linelabels unless _?
+    linelabels = _
     chart
 
   chart
@@ -316,7 +337,12 @@ visualise = () ->
 
   d3.select('#build_rates')
     .datum([data.build_rate_total_low_carbon, data.build_rate_high_carbon])
-    .call(timeSeriesChart().unit("GW/yr").max_value(12))
+    .call(
+      timeSeriesChart()
+        .unit("GW/yr")
+        .max_value(12)
+        .linelabels(["Low carbon", "High carbon"])
+    )
 
   d3.select('#capacity')
     .datum([ data.capacity_total_low_carbon, data.capacity_high_carbon ])
@@ -324,7 +350,12 @@ visualise = () ->
 
   d3.select('#load_factor')
     .datum([data.load_factor_dispatchable_low_carbon, data.load_factor_high_carbon, data.load_factor_demand, data.load_factor_intermittent_low_carbon])
-    .call(timeSeriesChart().unit("").max_value(1))
+    .call(
+      timeSeriesChart()
+        .unit("")
+        .max_value(1)
+        .linelabels(["Baseload low carbon", "High carbon", "Demand", "Wind"])
+    )
 
   d3.select('#energy_output')
     .datum([ data.energy_output_total_low_carbon, data.energy_output_high_carbon ])
@@ -332,7 +363,12 @@ visualise = () ->
 
   d3.select('#emissions_factor')
     .datum([data.emissions_factor])
-    .call(timeSeriesChart().unit("gCO2/kWh").max_value(500))
+    .call(
+      timeSeriesChart()
+        .unit("gCO2/kWh")
+        .max_value(500)
+        .linelabels(["All generation"])
+    )
 
   d3.select('#emissions')
     .datum([data.emissions_electicity, data.emissions_non_electricity_traded])
@@ -340,7 +376,12 @@ visualise = () ->
 
   d3.select('#emissions')
     .datum([data.emissions_uk_share_of_eu_ets_cap_current.slice(0,16), data.emissions_uk_share_of_eu_ets_cap_alternative.slice(0,16)])
-    .call(timeSeriesChart().unit("MtCO2/yr").max_value(300))
+    .call(
+      timeSeriesChart()
+        .unit("MtCO2/yr")
+        .max_value(300)
+        .linelabels(["CB4", "CB4 Revised"])
+    )
 
   d3.select('#electricitysystemcosts')
     .datum([ data.total_costs_capital, data.total_costs_operating, data.total_costs_fuel, data.total_costs_carbon ])
