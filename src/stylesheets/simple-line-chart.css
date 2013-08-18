@@ -65,6 +65,10 @@ p {
   stroke-width: 3px;
 }
 
+.linelabel {
+  font-size: 10px;
+}
+
 .area {
   fill: steelblue;
   fill-opacity: 0.1;

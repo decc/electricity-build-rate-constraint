@@ -179,11 +179,11 @@ timeSeriesChart = ->
       labels.enter()
         .append("text")
         .attr("class", (d,i) -> "linelabel linelabel#{i}")
-        .attr("transform", "translate(" + (xScale.range()[1]) + ",0)")
+        .attr("transform", "translate(" + (xScale.range()[1]+2) + ",0)")
         .text((d,i) -> linelabels[i])
 
       labels.transition()
-        .attr("transform", (d,i) -> "translate(" + (xScale.range()[1]) + ","+yScale(d[d.length-1])+")")
+        .attr("transform", (d,i) -> "translate(" + (xScale.range()[1]+2) + ","+(yScale(d[d.length-1])+4)+")")
 
 
   chart.unit = (_) ->
@@ -207,11 +207,11 @@ timeSeriesStakedAreaChart = ->
   
   margin =
     top: 20
-    right: 20
+    right: 115
     bottom: 20
-    left: 50
+    left: 65
 
-  width = 250
+  width = 375
   height = 125
 
   unit = "TWh/yr"
@@ -232,6 +232,8 @@ timeSeriesStakedAreaChart = ->
     .x((d,i) -> xScale(d.x))
     .y0((d,i) -> yScale(d.y0))
     .y1((d,i) -> yScale(d.y0 + d.y))
+
+  linelabels = []
 
   chart = (selection) ->
     selection.each (data) ->
@@ -309,6 +311,19 @@ timeSeriesStakedAreaChart = ->
       areas.transition()
         .attr("d", (d) -> area(d))
 
+      # Update the area labels
+      labels = g.selectAll(".linelabel")
+        .data(Object)
+
+      labels.enter()
+        .append("text")
+        .attr("class", (d,i) -> "linelabel linelabel#{i}")
+        .attr("transform", "translate(" + (xScale.range()[1]+2) + ",0)")
+        .text((d,i) -> linelabels[i])
+
+      labels.transition()
+        .attr("transform", (d,i) -> "translate(" + (xScale.range()[1]+2) + ","+(yScale((d[d.length-1].y0+(d[d.length-1].y/2)))+4)+")")
+
   chart.unit = (_) ->
     return unit unless _?
     unit = _
@@ -318,6 +333,12 @@ timeSeriesStakedAreaChart = ->
     return max_value unless _?
     max_value = _
     chart
+
+  chart.linelabels = (_) ->
+    return linelabels unless _?
+    linelabels = _
+    chart
+
 
   chart
 
@@ -346,7 +367,12 @@ visualise = () ->
 
   d3.select('#capacity')
     .datum([ data.capacity_total_low_carbon, data.capacity_high_carbon ])
-    .call(timeSeriesStakedAreaChart().unit("GW").max_value(150))
+    .call(
+      timeSeriesStakedAreaChart()
+        .unit("GW")
+        .max_value(150)
+        .linelabels(["Low carbon", "High carbon"])
+    )
 
   d3.select('#load_factor')
     .datum([data.load_factor_dispatchable_low_carbon, data.load_factor_high_carbon, data.load_factor_demand, data.load_factor_intermittent_low_carbon])
@@ -359,7 +385,12 @@ visualise = () ->
 
   d3.select('#energy_output')
     .datum([ data.energy_output_total_low_carbon, data.energy_output_high_carbon ])
-    .call(timeSeriesStakedAreaChart().unit("TWh/yr").max_value(700))
+    .call(
+      timeSeriesStakedAreaChart()
+        .unit("TWh/yr")
+        .max_value(700)
+        .linelabels(["Low carbon", "High carbon"])
+    )
 
   d3.select('#emissions_factor')
     .datum([data.emissions_factor])
@@ -372,7 +403,12 @@ visualise = () ->
 
   d3.select('#emissions')
     .datum([data.emissions_electicity, data.emissions_non_electricity_traded])
-    .call(timeSeriesStakedAreaChart().unit("MtCO2/yr").max_value(300))
+    .call(
+      timeSeriesStakedAreaChart()
+        .unit("MtCO2/yr")
+        .max_value(300)
+        .linelabels(["Electricity", "Industrial"])
+    )
 
   d3.select('#emissions')
     .datum([data.emissions_uk_share_of_eu_ets_cap_current.slice(0,16), data.emissions_uk_share_of_eu_ets_cap_alternative.slice(0,16)])
@@ -385,7 +421,12 @@ visualise = () ->
 
   d3.select('#electricitysystemcosts')
     .datum([ data.total_costs_capital, data.total_costs_operating, data.total_costs_fuel, data.total_costs_carbon ])
-    .call(timeSeriesStakedAreaChart().unit("£bn").max_value(150))
+    .call(
+      timeSeriesStakedAreaChart()
+        .unit("£bn")
+        .max_value(150)
+        .linelabels(["Capital","Operating","Fuel","Carbon"])
+    )
 
 
   # Update the controls to defaults if required
