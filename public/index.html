@@ -44,9 +44,9 @@
           This scenario results in&nbsp;<span class='output' data-format='.2p' data-name='n_2020_renewables_target'></span>&nbsp;renewable electricity in 2020
         </h2>
         We assume that between now and 2020
-        <span class='draggable output' data-format='.1f' data-name='build_rate_from_now_to_2020' max='12' min='0' step='0.1' value='10'></span>
+        <span class='draggable' data-format='.1f' data-name='build_rate_from_now_to_2020' max='12' min='0' step='0.1' value='10'></span>
         GW/yr of renewable electricity capacity is built and
-        <span class='draggable output' data-format='p' data-name='proportion_of_build_rate_to_2020_that_is_wind_rest_is_bio' max='1' min='0' step='0.01' type='range' value='0.0'></span>
+        <span class='draggable' data-format='p' data-name='proportion_of_build_rate_to_2020_that_is_wind_rest_is_bio' max='1' min='0' step='0.01' type='range' value='0.0'></span>
         of that capacity is wind. This leads to
         <span class='output' data-format='.0f' data-name='n_2020_renewables_target_twh'></span>
         TWh of renewable electricity in 2020 (i.e.,<span class='output' data-format='.2p' data-name='n_2020_renewables_target'></span>) compared with our indicative target of 105 TWh (30%).
@@ -57,23 +57,23 @@
         </h2>
         <p>
           We assume that we want to delay construction of further low-carbon electricity until the last possible moment, but still decarbonise electricity by 2050 in order to meet our legally binding target. How late we can leave it depends on the fastest we can imagine building low-carbon electricity. In this case we we assume that, at most,
-          <span class='draggable output' data-format='.1f' data-name='build_rate_target_in_second_build' max='12' min='0' step='0.1' type='range' value='0'></span>
+          <span class='draggable' data-format='.1f' data-name='build_rate_target_in_second_build' max='12' min='0' step='0.1' type='range' value='0'></span>
           GW of low carbon capacity can be built each year, and that the maximum rate at which the low carbon construction industry can expand is
-          <span class='draggable output' data-format='p' data-name='maximum_industry_expansion' max='1' min='0' step='0.01' type='range' value='0.5'></span>
+          <span class='draggable' data-format='p' data-name='maximum_industry_expansion' max='1' min='0' step='0.01' type='range' value='0.5'></span>
           a year. This means that new low-carbon capacity doesn't need to start generating until
           <span class='output' data-format='.0f' data-name='year_second_wave_of_building_starts'></span>
           in order for electricity to more-or-less decarbonise by 2050.
         </p>
         <p>
           One critical assumption is that
-          <span class='draggable output' data-format='p' data-name='proportion_of_second_build_that_is_wind' max='1' min='0' step='0.01' type='range' value='0.0'>of the</span>
+          <span class='draggable' data-format='p' data-name='proportion_of_second_build_that_is_wind' max='1' min='0' step='0.01' type='range' value='0.0'>of the</span>
           low-carbon capacity that is subsequently built is wind. This is important because wind delivers less energy per GW of capacity than nuclear, CCS or bioenergy.
         </p>
         <p>
           We have also assumed that, after 2020, the rate of low-carbon construction falls by at most
-          <span class='draggable output' data-format='p' data-name='maximum_industry_contraction' max='1' min='0' step='0.05' type='range' value='1'></span>
+          <span class='draggable' data-format='p' data-name='maximum_industry_contraction' max='1' min='0' step='0.05' type='range' value='1'></span>
           in any given year, and never falls below
-          <span class='draggable output' data-format='.1f' data-name='minimum_build_rate' max='10' min='0' step='0.5' type='range' value='0.5'></span>
+          <span class='draggable' data-format='.1f' data-name='minimum_build_rate' max='10' min='0' step='0.5' type='range' value='0.5'></span>
           GW per year.
         </p>
         <div id='emissions_warning'>
@@ -89,11 +89,11 @@
         </h2>
         <p>
           To work out the emissions intensity in 2030, we assume that
-          <span class='draggable output' data-format='.0f' data-name='n_2020_non_renewable_low_carbon_generation_i_e_nuclear_ccs' max='10' min='0' type='range' value='5'></span>
+          <span class='draggable' data-format='.0f' data-name='n_2020_non_renewable_low_carbon_generation_i_e_nuclear_ccs' max='10' min='0' type='range' value='5'></span>
           GW of nuclear and CCS is built by 2020 and that the emissions factor for remaining fossil fuel generation is
-          <span class='draggable output' data-format='.0f' data-name='n_2020_fossil_fuel_emissions_factor' max='1000' min='0' type='range' value='370'></span>
+          <span class='draggable' data-format='.0f' data-name='n_2020_fossil_fuel_emissions_factor' max='1000' min='0' type='range' value='370'></span>
           gCO2/kWh in 2020 and is expected to fall steadily towards
-          <span class='draggable output' data-format='.0f' data-name='n_2050_fossil_fuel_emissions_factor' max='1000' min='0' type='range' value='350'></span>
+          <span class='draggable' data-format='.0f' data-name='n_2050_fossil_fuel_emissions_factor' max='1000' min='0' type='range' value='350'></span>
           gCO2/kWh by 2050.
         </p>
         <!-- / CARBON BUDGET 4 -->
@@ -101,12 +101,12 @@
           The UK purchases&nbsp;<span class='output' data-format='.0f' data-name='cb4_current_net_ets_purchase'></span>&nbsp;MtCO2e of EU ETS allowances over CB4
         </h2>
         <p>
-          If emissions from heavy industry and electricity generation exceed the UK's share of the EU Emissions Trading Scheme cap (assumed to be 860 MtCO2e over the 4th Carbon Budget period 2023-2027) then allowances will need to be purchased from other EU countries. To estimate this purchase, we assume that industrial emissions grow at
-          <span class='draggable output' data-format='p' data-name='annual_change_in_non_electricity_traded_emissions' max='0.1' min='-0.1' step='0.01' type='range' value='-0.03'></span>
+          If emissions from heavy industry and electricity generation exceed the UK's share of the EU Emissions Trading Scheme cap (assumed to be 690 MtCO2e over the 4th Carbon Budget period 2023-2027) then allowances will need to be purchased from other EU countries. To estimate this purchase, we assume that industrial emissions grow at
+          <span class='draggable' data-format='p' data-name='annual_change_in_non_electricity_traded_emissions' max='0.1' min='-0.1' step='0.01' type='range' value='-0.03'></span>
           per year until
-          <span class='draggable output' data-format='.0f' data-name='year_start_to_see_radical_change_in_non_traded_emissions' max='2049' min='2015' type='range' value='2020'></span>
+          <span class='draggable' data-format='.0f' data-name='year_start_to_see_radical_change_in_non_traded_emissions' max='2049' min='2015' type='range' value='2020'></span>
           after which they grow at
-          <span class='draggable output' data-format='p' data-name='annual_change_in_non_electricity_traded_emissions_after_radical_change' max='0.1' min='-0.1' step='0.01' type='range' value='-0.03'></span>
+          <span class='draggable' data-format='p' data-name='annual_change_in_non_electricity_traded_emissions_after_radical_change' max='0.1' min='-0.1' step='0.01' type='range' value='-0.03'></span>
           until 2050. This results in emissions from the traded sector over the 4th Carbon Budget of
           <span class='output' data-format='.0f' data-name='cb4_current_scenario'></span>
           MtCO2e.
@@ -118,43 +118,43 @@
         <p>
           <b>Gas</b>
           reaches a cost of
-          <span class='draggable output' data-format='.0f' data-name='n_2030_cost_of_fossil_fuel' max='100' min='0' step='1' type='range' value='30'></span>
+          <span class='draggable' data-format='.0f' data-name='n_2030_cost_of_fossil_fuel' max='100' min='0' step='1' type='range' value='30'></span>
           &pound;/MWh in 2030 and
-          <span class='draggable output' data-format='.0f' data-name='n_2050_cost_of_fossil_fuel' max='100' min='0' step='1' type='range' value='30'></span>
+          <span class='draggable' data-format='.0f' data-name='n_2050_cost_of_fossil_fuel' max='100' min='0' step='1' type='range' value='30'></span>
           &pound;/MWh in 2050.
         </p>
         <p>
           <b>Carbon Dioxide emissions</b>
           cost
-          <span class='draggable output' data-format='.0f' data-name='n_2030_cost_of_carbon' max='300' min='0' step='1' type='range' value='30'></span>
+          <span class='draggable' data-format='.0f' data-name='n_2030_cost_of_carbon' max='300' min='0' step='1' type='range' value='30'></span>
           &pound;/tCO2
           in 2030 and
-          <span class='draggable output' data-format='.0f' data-name='n_2050_cost_of_carbon' max='300' min='0' step='1' type='range' value='30'></span>
+          <span class='draggable' data-format='.0f' data-name='n_2050_cost_of_carbon' max='300' min='0' step='1' type='range' value='30'></span>
           &pound;/tCO2
           in 2050.
         </p>
         <p>
           <b>Gas generation</b>
           costs X &pound;/kW to build and X &pound;/kW to operate. The costs are falling by
-          <span class='draggable output' data-format='p' data-name='annual_reduction_in_cost_of_high_carbon_generation' max='1' min='0' step='0.01' type='range' value='1'></span>
+          <span class='draggable' data-format='p' data-name='annual_reduction_in_cost_of_high_carbon_generation' max='1' min='0' step='0.01' type='range' value='1'></span>
           a year and the plants last, at most,
-          <span class='draggable output' data-format='.0f' data-name='average_life_high_carbon' max='60' min='0' type='range' value='30'></span>
+          <span class='draggable' data-format='.0f' data-name='average_life_high_carbon' max='60' min='0' type='range' value='30'></span>
           years.
         </p>
         <p>
           <b>Intermittent low carbon generation (e.g., wind)</b>
           costs X &pound;/kW to build and X &pound;/kW to operate. The costs are falling by
-          <span class='draggable output' data-format='p' data-name='annual_reduction_in_cost_of_intermittent_generation' max='1' min='0' step='0.01' type='range' value='1'></span>
+          <span class='draggable' data-format='p' data-name='annual_reduction_in_cost_of_intermittent_generation' max='1' min='0' step='0.01' type='range' value='1'></span>
           a year and the plants last, at most,
-          <span class='draggable output' data-format='.0f' data-name='average_life_wind' max='60' min='0' type='range' value='30'></span>
+          <span class='draggable' data-format='.0f' data-name='average_life_wind' max='60' min='0' type='range' value='30'></span>
           years.
         </p>
         <p>
           <b>Other low carbon generation (e.g., nuclear, CCS)</b>
           costs X &pound;/kW to build and X &pound;/kW to operate. The costs are falling by
-          <span class='draggable output' data-format='p' data-name='annual_reduction_in_cost_of_other_low_carbon_generation' max='1' min='0' step='0.01' type='range' value='1'></span>
+          <span class='draggable' data-format='p' data-name='annual_reduction_in_cost_of_other_low_carbon_generation' max='1' min='0' step='0.01' type='range' value='1'></span>
           a year and the plants last, at most,
-          <span class='draggable output' data-format='.0f' data-name='average_life_other_low_carbon' max='60' min='0' type='range' value='30'></span>
+          <span class='draggable' data-format='.0f' data-name='average_life_other_low_carbon' max='60' min='0' type='range' value='30'></span>
           years.
         </p>
         <!-- / ELECTRICITY DEMAND -->
@@ -165,18 +165,18 @@
         </h2>
         <p>
           Electricity demand grows by
-          <span class='draggable output' data-format='p' data-name='n_2012_onwards_electricity_demand_growth_rate' max='0.1' min='-0.1' step='0.005' type='range' value='0.0'></span>
+          <span class='draggable' data-format='p' data-name='n_2012_onwards_electricity_demand_growth_rate' max='0.1' min='-0.1' step='0.005' type='range' value='0.0'></span>
           a year until widespread electrification of demand starts in
-          <span class='draggable output' data-format='.0f' data-name='year_electricity_demand_starts_to_increase' max='2049' min='2015' type='range' value='2020'></span>
+          <span class='draggable' data-format='.0f' data-name='year_electricity_demand_starts_to_increase' max='2049' min='2015' type='range' value='2020'></span>
           and then grows steadily to reach
-          <span class='draggable output' data-format='.0f' data-name='n_2050_electricity_demand' max='1000' min='0' type='range' value='600'></span>
+          <span class='draggable' data-format='.0f' data-name='n_2050_electricity_demand' max='1000' min='0' type='range' value='600'></span>
           TWh/y in 2050.
         </p>
         <p>
           By 2050 we assume that the maximum electricity demand is
-          <span class='draggable output' data-format='p' data-name='n_2050_maximum_electricity_demand' max='5' min='0' step='0.5' type='range' value='2'></span>
+          <span class='draggable' data-format='p' data-name='n_2050_maximum_electricity_demand' max='5' min='0' step='0.5' type='range' value='2'></span>
           of the average demand and the minimum electricity demand is
-          <span class='draggable output' data-format='p' data-name='n_2050_minimum_electricity_demand' max='1' min='0' step='0.1' type='range' value='0.5'></span>
+          <span class='draggable' data-format='p' data-name='n_2050_minimum_electricity_demand' max='1' min='0' step='0.1' type='range' value='0.5'></span>
           of the average demand.
         </p>
       </div>
@@ -208,6 +208,6 @@
         </p>
       </div>
     </div>
-    <script src='/assets/application-8cbb8fd9c06f98654a4e4e6744ef0749.js' type='text/javascript'></script>
+    <script src='/assets/application-16ec1ad9da887cfe5e71b7ce1202c816.js' type='text/javascript'></script>
   </body>
 </html>

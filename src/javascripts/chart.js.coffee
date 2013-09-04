@@ -35,6 +35,8 @@ url_structure = [
   'annual_reduction_in_cost_of_high_carbon_generation'
 ]
 
+first_load = true
+
 update = () ->
   return false if dataIsUpToDate()
 
@@ -43,6 +45,9 @@ update = () ->
     data = json
     window.data = data
     visualise()
+    if first_load
+      updateControlsToMatchData()
+      first_load = false
   )
 
 setUrlToMatchSettings = () ->
@@ -50,8 +55,7 @@ setUrlToMatchSettings = () ->
 
 window.onpopstate = () ->
   getSettingsFromUrl()
-  updateControlsFromSettings()
-  update()
+  first_load = true
 
 urlForSettings = () ->
   url = for a in url_structure
@@ -339,7 +343,6 @@ timeSeriesStakedAreaChart = ->
     linelabels = _
     chart
 
-
   chart
 
 visualise = () ->
@@ -496,12 +499,11 @@ d3.selectAll('.draggable')
   .datum(() -> d3.select(@))
   .call(dragbehaviour)
 
-updateControlsFromSettings = () ->
-  d3.selectAll('.control')
-    .datum(() -> @dataset)
-    .filter( (d) -> s[d.name]? )
-    .property('value', (d) -> s[d.name])
+updateControlsToMatchData = () ->
+  d3.selectAll('.draggable')
+    .datum(() -> d3.select(@))
+    .attr('value', (d) -> data[d.attr('data-name')])
+    .text((d) -> d3.format(d.attr('data-format'))(data[d.attr('data-name')]))
 
 getSettingsFromUrl()
-updateControlsFromSettings()
 setInterval(update, 300)
