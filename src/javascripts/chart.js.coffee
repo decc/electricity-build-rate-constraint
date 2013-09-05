@@ -383,7 +383,7 @@ visualise = () ->
       timeSeriesChart()
         .unit("")
         .max_value(1)
-        .linelabels(["Baseload low carbon", "High carbon", "Demand", "Wind"])
+        .linelabels(["Other low carbon", "High carbon", "Demand", "Wind"])
     )
 
   d3.select('#energy_output')

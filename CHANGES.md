@@ -1,5 +1,6 @@
 # Head
 
+* Tweaked to chart wording (Tom COunsell)
 * Area charts now have labels (Tom Counsell)
 * Line charts now have labels (Tom Counsell)
 * Charts now update by polling rather than drag events, in order to make it feel more responsive (Tom Counsell)
