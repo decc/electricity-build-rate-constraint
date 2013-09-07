@@ -32,7 +32,16 @@ url_structure = [
   'n_2050_cost_of_carbon',
   'annual_reduction_in_cost_of_intermittent_generation',
   'annual_reduction_in_cost_of_other_low_carbon_generation',
-  'annual_reduction_in_cost_of_high_carbon_generation'
+  'annual_reduction_in_cost_of_high_carbon_generation',
+  'capital_cost_dispatchable_low_carbon_2012',
+  'capital_cost_intermittent_2012',
+  'operating_cost_intermittent_2012',
+  'operating_cost_dispatchable_low_carbon_2012',
+  'capital_cost_dispatchable_low_carbon_2012',
+  'fuel_per_unit_electricity_dispatchable_low_carbon_2012',
+  'captial_cost_high_carbon_2012',
+  'operating_cost_high_carbon_2012',
+  'fuel_per_unit_electricity_high_carbon_2012'
 ]
 
 first_load = true

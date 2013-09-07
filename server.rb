@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'json'
 require 'haml'
+#require 'redcarpet'
 require_relative 'model/model'
 
 # We want to be able to work out which methods are unique to our Model
@@ -63,7 +64,16 @@ url_structure = [
   'n_2050_cost_of_carbon',
   'annual_reduction_in_cost_of_intermittent_generation',
   'annual_reduction_in_cost_of_other_low_carbon_generation',
-  'annual_reduction_in_cost_of_high_carbon_generation'
+  'annual_reduction_in_cost_of_high_carbon_generation',
+  'capital_cost_dispatchable_low_carbon_2012',
+  'capital_cost_intermittent_2012',
+  'operating_cost_intermittent_2012',
+  'operating_cost_dispatchable_low_carbon_2012',
+  'capital_cost_dispatchable_low_carbon_2012',
+  'fuel_per_unit_electricity_dispatchable_low_carbon_2012',
+  'captial_cost_high_carbon_2012',
+  'operating_cost_high_carbon_2012',
+  'fuel_per_unit_electricity_high_carbon_2012'
 ] - ["version"] # A cludge to make the above lines easier to copy and paste
 
 # This is the method that is used to request data from the model
@@ -100,6 +110,12 @@ get '/data/1:*' do
   result[:id] = "/1:"+params[:splat][0]
 
   result.to_json
+end
+
+get '/:page.html' do |page|
+  f = File.join(settings.root, "#{page.upcase}.md")
+  halt(404) unless File.exists?(f)
+  markdown IO.readlines(f).join
 end
 
 # The root url. Just returns index.html at the moment

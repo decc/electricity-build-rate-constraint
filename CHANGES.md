@@ -1,5 +1,6 @@
 # Head
 
+* Added today's cost as inputs (Tom Counsell)
 * Tweaked to chart wording (Tom COunsell)
 * Area charts now have labels (Tom Counsell)
 * Line charts now have labels (Tom Counsell)
