@@ -30,7 +30,21 @@
             .chart
 
       #inputs
+        .leftnote
+          This runs on a
+          %a{:href => "/electricity-build-rate-constraint.xlsx"} simple excel model
+          \.You may want to consult the 
+          %a{ href: '/README.html'}README
+          or the 
+          %a{ href: '/QA.html'} Quality Assurance
+          notes or the 
+          %a{ href: '/CHANGES.html'} CHANGELOG
+          \. &copy; 2013 
+          %a{ href: 'http://tom.counsell.org'} Tom Counsell
+          %a{ href: 'http://opensource.org/MIT'}MIT Licence.
+
         %p You can change any blue number by clicking and dragging on the number with your mouse. The numbers highlighted in yellow will change as a consequence.
+
 
         // RENEWABLES TARGET
         %h2 
@@ -193,33 +207,6 @@
           %span.draggable{"data-name" => "n_2050_minimum_electricity_demand", "data-format" => "p", :max => "1", :min => "0", :step => "0.1", :type => "range", :value => "0.5"}
           of the average demand.
     
-      %h2 Notes and fixes
-
-      %ul
-        %li Add a more realistic profile for legacy plant (especially nuclear) shutdown.
-        %li Check plant life-times
-        %li Energy security
-        %li Allow today's costs of technologies to be varied
-        %li Allow emissions target to be varied
-        %li Allow CB4 level to be varied
-      
       #refs
         %p
-          This is based on a
-          = succeed ".Please" do
-            %a{:href => "/electricity-build-rate-constraint.xlsx"} very simple one sheet excel model
-          download source, report bugs and propose changes at
-          = succeed "." do
-            %a{:href => "http://github.com/decc/electricity-build-rate-constraint"} http://github.com/decc/electricity-build-rate-constraint
-          It is &copy; 2013
-          %a{:href => "http://tom.counsell.org"} Tom Counsell
-          and licensed under the open source
-          %a{href: "http://opensource.org/licenses/MIT"} MIT licence.
-          This software is provided "as is", without warranty of any kind, express or
-          implied, including but not limited to the warranties of merchantability,
-          fitness for a particular purpose and noninfringement. In no event shall the
-          authors or copyright holders be liable for any claim, damages or other
-          liability, whether in an action of contract, tort or otherwise, arising from,
-          out of or in connection with the software or the use or other dealings in
-          the software.
     = javascript

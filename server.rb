@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'json'
 require 'haml'
-#require 'redcarpet'
+require 'kramdown'
 require_relative 'model/model'
 
 # We want to be able to work out which methods are unique to our Model

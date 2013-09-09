@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <link href='/assets/application-68bf815d78891b1b405fdf0387aecb83.css' media='screen' rel='stylesheet' type='text/css' />
+  <link href='/assets/application-b5031a40d23252b3f9f8188377695dba.css' media='screen' rel='stylesheet' type='text/css' />
   <meta content='IE=edge' http-equiv='X-UA-Compatible'>
   <body>
     <div id='container'>
@@ -38,6 +38,19 @@
         </div>
       </div>
       <div id='inputs'>
+        <div class='leftnote'>
+          This runs on a
+          <a href='/electricity-build-rate-constraint.xlsx'>simple excel model</a>
+          .You may want to consult the
+          <a href='/README.html'>README</a>
+          or the
+          <a href='/QA.html'>Quality Assurance</a>
+          notes or the
+          <a href='/CHANGES.html'>CHANGELOG</a>
+          . &copy; 2013
+          <a href='http://tom.counsell.org'>Tom Counsell</a>
+          <a href='http://opensource.org/MIT'>MIT Licence.</a>
+        </div>
         <p>You can change any blue number by clicking and dragging on the number with your mouse. The numbers highlighted in yellow will change as a consequence.</p>
         <!-- / RENEWABLES TARGET -->
         <h2>
@@ -135,7 +148,11 @@
         </p>
         <p>
           <b>Gas generation</b>
-          costs X &pound;/kW to build and X &pound;/kW to operate. The costs are falling by
+          costs
+          <span class='draggable' data-format='.0f' data-name='captial_cost_high_carbon_2012' max='5000' min='0' step='1' type='range' value='600'></span>
+          &pound;/kW to build and
+          <span class='draggable' data-format='.0f' data-name='operating_cost_high_carbon_2012' max='100' min='0' step='1' type='range' value='25'></span>
+          &pound;/kW a year to operate. The costs are falling by
           <span class='draggable' data-format='p' data-name='annual_reduction_in_cost_of_high_carbon_generation' max='1' min='0' step='0.01' type='range' value='1'></span>
           a year and the plants last, at most,
           <span class='draggable' data-format='.0f' data-name='average_life_high_carbon' max='60' min='0' type='range' value='30'></span>
@@ -143,7 +160,11 @@
         </p>
         <p>
           <b>Intermittent low carbon generation (e.g., wind)</b>
-          costs X &pound;/kW to build and X &pound;/kW to operate. The costs are falling by
+          costs
+          <span class='draggable' data-format='.0f' data-name='capital_cost_intermittent_2012' max='5000' min='0' step='1' type='range' value='600'></span>
+          &pound;/kW to build and
+          <span class='draggable' data-format='.0f' data-name='operating_cost_intermittent_2012' max='100' min='0' step='1' type='range' value='25'></span>
+          &pound;/kW a year to operate. The costs are falling by
           <span class='draggable' data-format='p' data-name='annual_reduction_in_cost_of_intermittent_generation' max='1' min='0' step='0.01' type='range' value='1'></span>
           a year and the plants last, at most,
           <span class='draggable' data-format='.0f' data-name='average_life_wind' max='60' min='0' type='range' value='30'></span>
@@ -151,7 +172,11 @@
         </p>
         <p>
           <b>Other low carbon generation (e.g., nuclear, CCS)</b>
-          costs X &pound;/kW to build and X &pound;/kW to operate. The costs are falling by
+          costs
+          <span class='draggable' data-format='.0f' data-name='capital_cost_dispatchable_low_carbon_2012' max='5000' min='0' step='1' type='range' value='600'></span>
+          &pound;/kW to build and
+          <span class='draggable' data-format='.0f' data-name='operating_cost_dispatchable_low_carbon_2012' max='100' min='0' step='1' type='range' value='25'></span>
+          &pound;/kW a year to operate. The costs are falling by
           <span class='draggable' data-format='p' data-name='annual_reduction_in_cost_of_other_low_carbon_generation' max='1' min='0' step='0.01' type='range' value='1'></span>
           a year and the plants last, at most,
           <span class='draggable' data-format='.0f' data-name='average_life_other_low_carbon' max='60' min='0' type='range' value='30'></span>
@@ -180,34 +205,10 @@
           of the average demand.
         </p>
       </div>
-      <h2>Notes and fixes</h2>
-      <ul>
-        <li>Check plant life-times</li>
-        <li>Energy security</li>
-        <li>Allow today's costs of technologies to be varied</li>
-        <li>Allow emissions target to be varied</li>
-        <li>Allow CB4 level to be varied</li>
-      </ul>
       <div id='refs'>
-        <p>
-          This is based on a
-          <a href='/electricity-build-rate-constraint.xlsx'>very simple one sheet excel model</a>.Please
-          download source, report bugs and propose changes at
-          <a href='http://github.com/decc/electricity-build-rate-constraint'>http://github.com/decc/electricity-build-rate-constraint</a>.
-          It is &copy; 2013
-          <a href='http://tom.counsell.org'>Tom Counsell</a>
-          and licensed under the open source
-          <a href='http://opensource.org/licenses/MIT'>MIT licence.</a>
-          This software is provided "as is", without warranty of any kind, express or
-          implied, including but not limited to the warranties of merchantability,
-          fitness for a particular purpose and noninfringement. In no event shall the
-          authors or copyright holders be liable for any claim, damages or other
-          liability, whether in an action of contract, tort or otherwise, arising from,
-          out of or in connection with the software or the use or other dealings in
-          the software.
-        </p>
+        <p></p>
       </div>
     </div>
-    <script src='/assets/application-16ec1ad9da887cfe5e71b7ce1202c816.js' type='text/javascript'></script>
+    <script src='/assets/application-300d5cc548e66035423a93d9d8fe8145.js' type='text/javascript'></script>
   </body>
 </html>
