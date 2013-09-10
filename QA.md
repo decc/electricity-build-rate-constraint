@@ -1,13 +1,8 @@
 # Quality Assurance of Electricity Build Rate Constraint Model
 
-Author
-  : Tom Counsell
-
-Date
-  : 9 September 2013
-
-Canonical source
-  : http://github.com/decc/electricity-build-rate-constraint
+| Author           | Tom Counsell     |
+| Date             | 9 September 2013 |
+| Canonical source | http://github.com/decc/electricity-build-rate-constraint |
 
 ## Aims of the model
 

@@ -1,6 +1,13 @@
 # Head
 
+## W/C 9 September
+
+* Added a security of supply calculation (Tom Counsell)
+* Added a way of manually specifying when legacy capacity shuts down (Tom Counsell)
 * Added access to the README, QA doc and CHANGELOG from the front end (Tom Counsell)
+
+## Older
+
 * Added today's cost as inputs (Tom Counsell)
 * Tweaked to chart wording (Tom COunsell)
 * Area charts now have labels (Tom Counsell)
